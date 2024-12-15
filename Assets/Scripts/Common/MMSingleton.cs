@@ -1,52 +1,52 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MMSingleton<T> : MonoBehaviour where T : Component
+namespace MM.Common
 {
-    public static T Current => _instance;
-    protected static T _instance;
-
-    public static T Instance
+    public class MMSingleton<T> : MonoBehaviour where T : Component
     {
-        get
+        public static T Current => _instance;
+        protected static T _instance;
+
+        public static T Instance
         {
-            if (_instance == null)
+            get
             {
-                _instance = FindObjectOfType<T>();
                 if (_instance == null)
                 {
-                    GameObject obj = new();
-                    obj.name = typeof(T).Name + "_AutoCreated";
-                    _instance = obj.AddComponent<T>();
+                    _instance = FindObjectOfType<T>();
+                    if (_instance == null)
+                    {
+                        GameObject obj = new();
+                        obj.name = typeof(T).Name + "_AutoCreated";
+                        _instance = obj.AddComponent<T>();
+                    }
                 }
+                return _instance;
             }
-            return _instance;
         }
-    }
 
-    protected virtual void Awake()
-    {
-        InitializeSingleton();
-    }
+        protected virtual void Awake()
+        {
+            InitializeSingleton();
+        }
 
-    protected virtual void InitializeSingleton()
-    {
-        if (!Application.isPlaying)
+        protected virtual void InitializeSingleton()
         {
-            return;
-        }
-        if (_instance == null)
-        {
-            _instance = this as T;
-            DontDestroyOnLoad(transform.gameObject);
-        }
-        else
-        {
-            if (this != _instance)
+            if (!Application.isPlaying)
             {
-                Destroy(this.gameObject);
+                return;
+            }
+            if (_instance == null)
+            {
+                _instance = this as T;
+                DontDestroyOnLoad(transform.gameObject);
+            }
+            else
+            {
+                if (this != _instance)
+                {
+                    Destroy(this.gameObject);
+                }
             }
         }
     }
