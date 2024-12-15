@@ -9,10 +9,14 @@ using UnityEngine;
 namespace MM.Common
 {
 
+
+	[ExecuteAlways]
     public static class MMEventManager 
     {
         private static Dictionary<Type, List<IMMEventListener>> _subscribersList;
 
+
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void InitializeStatics()
         {
             _subscribersList = new Dictionary<Type, List<IMMEventListener>> ();

@@ -16,14 +16,14 @@ public class PlayerControl : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal"); // 左右（-1到1）
         movement.y = Input.GetAxisRaw("Vertical");   // 上下（-1到1）
 
-        if(movement.magnitude > 0)
-        {
-            animator.Play("Samurai_Run");
-        }
-        else
-        {
-            animator.Play("Samurai_Idle");
-        }
+//        if(movement.magnitude > 0)
+//        {
+//            animator.Play("Samurai_Run");
+//        }
+//        else
+//        {
+//            animator.Play("Samurai_Idle");
+//        }
 
         if(movement.x > 0)
         {
