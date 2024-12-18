@@ -4,17 +4,17 @@ using UnityEngine;
 namespace TS.Player {
 
     public class PlayerControl : MonoBehaviour {
-        public float moveSpeed = 5f; // ÒÆ¶¯ËÙ¶È
-        public Rigidbody2D rb; // ½ÇÉ«µÄ Rigidbody2D ×é¼ş
-        public Animator animator; // ÓÃÓÚ¿ØÖÆ¶¯»­£¨¿ÉÑ¡£©
+        public float moveSpeed = 5f; 
+        public Rigidbody2D rb; 
+        public Animator animator; 
         public WeaponController weaponController;
-        public Camera playerCamera;
+        //public Camera playerCamera;
         private Vector2 movement;
 
         private void Update() {
-            // »ñÈ¡ÊäÈë
-            movement.x = Input.GetAxisRaw("Horizontal"); // ×óÓÒ£¨-1µ½1£©
-            movement.y = Input.GetAxisRaw("Vertical");   // ÉÏÏÂ£¨-1µ½1£©
+
+            movement.x = Input.GetAxisRaw("Horizontal"); 
+            movement.y = Input.GetAxisRaw("Vertical");   
 
             // if(movement.magnitude > 0) { animator.Play("Samurai_Run"); } else {
             // animator.Play("Samurai_Idle"); }
@@ -28,12 +28,13 @@ namespace TS.Player {
             if (Input.GetMouseButtonDown(0)) {
                 weaponController.Attack();
             }
-            var aimPoint = playerCamera.ScreenToWorldPoint(Input.mousePosition);
+            //var aimPoint = playerCamera.ScreenToWorldPoint(Input.mousePosition);
+            var aimPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //å¯ä»¥ç›´æ¥ç”¨Camera.mainè·å–ä¸»ç›¸æœº
             weaponController.Aim(aimPoint);
         }
 
+        //ç‰©ä½“çš„ç§»åŠ¨ä¸€èˆ¬åœ¨FixedUpdateä¸­æ‰§è¡Œ
         private void FixedUpdate() {
-            // Í¨¹ı Rigidbody2D ÒÆ¶¯½ÇÉ«
             rb.MovePosition(rb.position + (moveSpeed * Time.fixedDeltaTime * movement));
         }
     }

@@ -586,6 +586,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &727841792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727841784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a1e8ec9fcf326046b1bf337fd8a26e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 0
+  MaximumHealth: 1
+  onDied:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1109648455
 GameObject:
   m_ObjectHideFlags: 0
@@ -7900,7 +7917,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1e8ec9fcf326046b1bf337fd8a26e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 1
+  CurrentHealth: 0
+  MaximumHealth: 1
   onDied:
     m_PersistentCalls:
       m_Calls:
@@ -8039,6 +8057,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5403248344364853027, guid: 1d85fd9ee2fc79c4188c4f09387bca01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 727841789}
+    - targetCorrespondingSourceObject: {fileID: 5403248344364853027, guid: 1d85fd9ee2fc79c4188c4f09387bca01, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 727841792}
     - targetCorrespondingSourceObject: {fileID: 5403248344364853027, guid: 1d85fd9ee2fc79c4188c4f09387bca01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 727841788}

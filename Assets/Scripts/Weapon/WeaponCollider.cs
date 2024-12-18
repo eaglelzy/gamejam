@@ -13,9 +13,7 @@ namespace TS.Weapon {
             hitCollider.OverlapCollider(contactFilter2D, shared);
             foreach (var collider in shared) {
                 if (collider.TryGetComponent<Health>(out var health)) {
-                    if (health.hp > 0) {
-                        health.hp -= 1;
-                    }
+                    health.Damage(1, gameObject);
                 }
             }
         }
