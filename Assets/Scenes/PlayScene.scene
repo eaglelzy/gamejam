@@ -270,6 +270,7 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 727841788}
   animator: {fileID: 727841785}
+  weaponController: {fileID: 1673940224}
 --- !u!61 &727841790
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1220,6 +1221,7 @@ GameObject:
   - component: {fileID: 1673940221}
   - component: {fileID: 1673940223}
   - component: {fileID: 1673940222}
+  - component: {fileID: 1673940224}
   m_Layer: 0
   m_HasEditorInfo: 1
   m_Name: Sword
@@ -1318,6 +1320,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1673940224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673940220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 669ca269f71c60c4382b5d3e2773eb74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordAnimator: {fileID: 1673940222}
 --- !u!1 &1676254510
 GameObject:
   m_ObjectHideFlags: 0
