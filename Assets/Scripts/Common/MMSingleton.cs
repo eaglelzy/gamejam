@@ -16,8 +16,9 @@ namespace MM.Common
                     _instance = FindObjectOfType<T>();
                     if (_instance == null)
                     {
-                        GameObject obj = new();
-                        obj.name = typeof(T).Name + "_AutoCreated";
+                        GameObject obj = new() {
+                            name = typeof(T).Name + "_AutoCreated"
+                        };
                         _instance = obj.AddComponent<T>();
                     }
                 }
