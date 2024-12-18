@@ -270,7 +270,8 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 727841788}
   animator: {fileID: 727841785}
-  weaponController: {fileID: 1673940224}
+  weaponController: {fileID: 1951229808}
+  playerCamera: {fileID: 1667359522}
 --- !u!61 &727841790
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -476,9 +477,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1847744233
+  m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -1222,6 +1223,7 @@ GameObject:
   - component: {fileID: 1673940223}
   - component: {fileID: 1673940222}
   - component: {fileID: 1673940224}
+  - component: {fileID: 1673940225}
   m_Layer: 0
   m_HasEditorInfo: 1
   m_Name: Sword
@@ -1238,13 +1240,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1673940220}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 727841787}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 1951229807}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!95 &1673940222
 Animator:
   serializedVersion: 5
@@ -1306,8 +1308,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -740575031
-  m_SortingLayer: 0
+  m_SortingLayerID: 1195541923
+  m_SortingLayer: 1
   m_SortingOrder: 10
   m_Sprite: {fileID: 132761602, guid: 7eca35d58acf56e41a5dbd8881e917ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1320,7 +1322,57 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1673940224
+--- !u!60 &1673940224
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673940220}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_LayerOverridePriority: 1
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.6666667, y: 2.6666667}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.0965189, y: 0.6471446}
+      - {x: 0.12932557, y: 0.9041141}
+      - {x: 0.24073416, y: -0.0009238422}
+      - {x: 0.8628908, y: -1.0420955}
+      - {x: 1.3837042, y: -0.25474778}
+  m_UseDelaunayMesh: 0
+--- !u!114 &1673940225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1329,10 +1381,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1673940220}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 669ca269f71c60c4382b5d3e2773eb74, type: 3}
+  m_Script: {fileID: 11500000, guid: 73e5ac0a2fbe37e4d9e2061c48f411fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordAnimator: {fileID: 1673940222}
+  hitCollider: {fileID: 1673940224}
+  contactFilter2D:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 73
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!1 &1676254510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,6 +1517,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1951229806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 7
+  m_Component:
+  - component: {fileID: 1951229807}
+  - component: {fileID: 1951229808}
+  m_Layer: 0
+  m_HasEditorInfo: 1
+  m_Name: SwordController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1951229807
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951229806}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1673940221}
+  m_Father: {fileID: 727841787}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1951229808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951229806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 669ca269f71c60c4382b5d3e2773eb74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordAnimator: {fileID: 1673940222}
 --- !u!1 &1976322759
 GameObject:
   m_ObjectHideFlags: 0
@@ -7142,6 +7255,84 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &2132618628 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8665250769897032639, guid: 1b4793398b3d9f846952cd3a8e35b1d8, type: 3}
+  m_PrefabInstance: {fileID: 3112235617091517279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2132618632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132618628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a1e8ec9fcf326046b1bf337fd8a26e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 1
+  onDied:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2132618628}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!61 &2132618633
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132618628}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &2171650059736051642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7153,6 +7344,10 @@ PrefabInstance:
     - target: {fileID: 5403248344364853027, guid: 1d85fd9ee2fc79c4188c4f09387bca01, type: 3}
       propertyPath: m_Name
       value: Samurai
+      objectReference: {fileID: 0}
+    - target: {fileID: 5403248344364853027, guid: 1d85fd9ee2fc79c4188c4f09387bca01, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5995161302242642579, guid: 1d85fd9ee2fc79c4188c4f09387bca01, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7200,7 +7395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7245723477999313936, guid: 1d85fd9ee2fc79c4188c4f09387bca01, type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7245723477999313936, guid: 1d85fd9ee2fc79c4188c4f09387bca01, type: 3}
       propertyPath: m_SortingLayerID
@@ -7211,7 +7406,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5995161302242642579, guid: 1d85fd9ee2fc79c4188c4f09387bca01, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1673940221}
+      addedObject: {fileID: 1951229807}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5403248344364853027, guid: 1d85fd9ee2fc79c4188c4f09387bca01, type: 3}
       insertIndex: -1
@@ -7271,14 +7466,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7617547396440305925, guid: 1b4793398b3d9f846952cd3a8e35b1d8, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7617547396440305925, guid: 1b4793398b3d9f846952cd3a8e35b1d8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7617547396440305925, guid: 1b4793398b3d9f846952cd3a8e35b1d8, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1195541923
+      objectReference: {fileID: 0}
     - target: {fileID: 8665250769897032639, guid: 1b4793398b3d9f846952cd3a8e35b1d8, type: 3}
       propertyPath: m_Name
       value: Bot
       objectReference: {fileID: 0}
+    - target: {fileID: 8665250769897032639, guid: 1b4793398b3d9f846952cd3a8e35b1d8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8665250769897032639, guid: 1b4793398b3d9f846952cd3a8e35b1d8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2132618633}
+    - targetCorrespondingSourceObject: {fileID: 8665250769897032639, guid: 1b4793398b3d9f846952cd3a8e35b1d8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2132618632}
   m_SourcePrefab: {fileID: 100100000, guid: 1b4793398b3d9f846952cd3a8e35b1d8, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

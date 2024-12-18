@@ -7,6 +7,7 @@ namespace TS.Weapon {
 
         public override void Attack() {
             swordAnimator.SetTrigger(attackId);
+            //Physics2D.OverlapArea()
         }
 
         public override void Aim(Vector2 target) {
