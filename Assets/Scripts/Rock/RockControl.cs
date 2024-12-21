@@ -4,19 +4,11 @@ using UnityEngine;
 
 public class RockControl : MonoBehaviour
 {
-    [Tooltip("碰撞给的力大小")]
-    [SerializeField]
-    private int bulletForce = 500;
-
-    [Tooltip("石头最大速度")]
-    [SerializeField]
-    private int maxSpeed = 2;
 
     [Tooltip("初始下降速度")]
     [SerializeField]
     private float force = 10;
 
-    private Vector2 scrollDirection = new(1, 0.2f);
 
     private Rigidbody2D rb;
     
