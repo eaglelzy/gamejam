@@ -4,21 +4,23 @@ namespace TS.Projectile {
 
     public class Bullet : MonoBehaviour {
         public float lifetime = 1;
-        private float destroyTime;
+        [Tooltip("击中石头时施加的扭矩")]public float torque = -100;
+        private float _destroyTime;
 
         private void Start() {
-            destroyTime = Time.time + lifetime;
+            _destroyTime = Time.time + lifetime;
         }
 
         private void Update() {
-            if (Time.time < destroyTime) return;
+            if (Time.time < _destroyTime) return;
             Destroy(gameObject);
         }
 
-        private void OnCollisionEnter2D(Collision2D collision) {
+        private void OnTriggerEnter2D(Collider2D collision) {
             var other = collision.gameObject;
-            if (other.CompareTag("Enemy")) {
-                Destroy(other);
+            if (other.CompareTag("Rock")) {
+                collision.attachedRigidbody.AddTorque(torque, ForceMode2D.Impulse);
+            } else if (other.CompareTag("Enemy")) {
             }
             Destroy(gameObject);
         }

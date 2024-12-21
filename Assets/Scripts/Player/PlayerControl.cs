@@ -18,10 +18,13 @@ namespace TS.Player {
         // 检测是否在地面上的点
         public float groundCheckRadius = 0.2f;
 
+        public float moveSmoothTime = 0.05f;
+
         //public Camera playerCamera;
         private Vector2 movement;
 
         private bool isGrounded;
+        private Vector3 _currentVelocity = Vector3.zero;
 
         private void Start() {
             rb = GetComponent<Rigidbody2D>();
@@ -54,14 +57,13 @@ namespace TS.Player {
             //var aimPoint = playerCamera.ScreenToWorldPoint(Input.mousePosition);
             var aimPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //可以直接用Camera.main获取主相机
             weaponController.Aim(aimPoint);
-
-            //只用x轴的速度
-            rb.velocity = new Vector2(movement.x * moveSpeed, rb.velocity.y);
         }
 
         //物体的移动一般在FixedUpdate中执行
         private void FixedUpdate() {
-            //rb.MovePosition(rb.position + (moveSpeed * Time.fixedDeltaTime * movement));
+            var targetVelocity = new Vector2(movement.x * moveSpeed, rb.velocity.y);
+            //只用x轴的速度
+            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref _currentVelocity, moveSmoothTime);
         }
 
         private void OnDrawGizmosSelected() {
