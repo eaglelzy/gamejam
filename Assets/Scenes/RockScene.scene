@@ -410,7 +410,11 @@ Camera:
   field of view: 60
   orthographic: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
   orthographic size: 3.75
+=======
+  orthographic size: 7
+>>>>>>> ad6346d066a7c9d5d863ac232ea1687e5c36e1bc
 =======
   orthographic size: 7
 >>>>>>> ad6346d066a7c9d5d863ac232ea1687e5c36e1bc
