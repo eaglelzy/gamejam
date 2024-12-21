@@ -13,7 +13,7 @@ public class RoadGenerator : MonoBehaviour
     private Transform currentRoad;
 
     //当前路要生成的位置
-    public Vector3 CurrentAngle = new Vector3(0, 0, 12);
+    private Vector3 currentAngle = new Vector3(0, 0, 12);
 
     private Vector3 roadOffset = new Vector3(5, 5, 0);
     
@@ -25,10 +25,10 @@ public class RoadGenerator : MonoBehaviour
 
     void GenerateRoad() {
         float roadWidth = currentRoad.GetComponent<SpriteRenderer>().bounds.size.x;
-        float y = roadWidth * Mathf.Sin(CurrentAngle.z * Mathf.Deg2Rad);
-        float x = roadWidth * Mathf.Cos(CurrentAngle.z * Mathf.Deg2Rad);
+        float y = roadWidth * Mathf.Sin(currentAngle.z * Mathf.Deg2Rad);
+        float x = roadWidth * Mathf.Cos(currentAngle.z * Mathf.Deg2Rad);
         Vector3 targetPosition = currentRoad.position + new Vector3(x, y, 0);
-        Quaternion quaternion = Quaternion.Euler(CurrentAngle);
+        Quaternion quaternion = Quaternion.Euler(currentAngle);
 
         GameObject road = Instantiate(roadPrefab, targetPosition, quaternion);
 
