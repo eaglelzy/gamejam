@@ -46,7 +46,7 @@ namespace MM.Common
             if (!_subscribersList.ContainsKey(eventType)) return;
             List<IMMEventListener> list = _subscribersList[eventType];
 
-            for (int i = list.Count - 1; i >= 0; i--)
+            for (int i = list.Count - 1; i > 0; i--)
             {
                 if (list[i] == listener)
                 {
@@ -55,8 +55,8 @@ namespace MM.Common
                     {
                         _subscribersList.Remove(eventType);
                     }
+                    return;
                 }
-                return;
             }
         }
 

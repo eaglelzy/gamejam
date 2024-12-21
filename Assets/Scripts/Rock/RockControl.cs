@@ -12,11 +12,15 @@ public class RockControl : MonoBehaviour
     [SerializeField]
     private int maxSpeed = 2;
 
+    [Tooltip("初始下降速度")]
+    [SerializeField]
+    private float force = 10;
+
     private Vector2 scrollDirection = new(1, 0.2f);
+
+    private Rigidbody2D rb;
     
 
-    Rigidbody2D rb;
-    public float force = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +30,13 @@ public class RockControl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+/*        if (collision.gameObject.CompareTag("Bullet"))
         {
             rb.AddForce(scrollDirection * bulletForce, ForceMode2D.Impulse);
             if (rb.velocity.x > maxSpeed)
             {
                 rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
             }
-        }
+        }*/
     }
 }

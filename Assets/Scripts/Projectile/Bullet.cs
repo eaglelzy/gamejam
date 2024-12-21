@@ -4,7 +4,20 @@ namespace TS.Projectile {
 
     public class Bullet : MonoBehaviour {
         public float lifetime = 1;
-        [Tooltip("击中石头时施加的扭矩")]public float torque = -100;
+        [Tooltip("击中石头时施加的扭矩")]
+        public float torque = -100;
+
+        [Tooltip("碰撞给的力大小")]
+        [SerializeField]
+        private int bulletForce = 500;
+
+        [Tooltip("石头最大速度")]
+        [SerializeField]
+        private int maxSpeed = 2;
+
+        // 滚动方向
+        private Vector2 scrollDirection = new(1, 0.2f);
+
         private float _destroyTime;
 
         private void Start() {
@@ -19,8 +32,16 @@ namespace TS.Projectile {
         private void OnTriggerEnter2D(Collider2D collision) {
             var other = collision.gameObject;
             if (other.CompareTag("Rock")) {
-                collision.attachedRigidbody.AddTorque(torque, ForceMode2D.Impulse);
-            } else if (other.CompareTag("Enemy")) {
+                var rb = collision.attachedRigidbody;
+                var targetDir = other.transform.position - transform.position;
+                rb.AddForce(scrollDirection * (targetDir.x > 0 ? 1 : -1) * bulletForce, ForceMode2D.Impulse);
+                if (collision.attachedRigidbody.velocity.x > maxSpeed)
+                {
+                    rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+                }
+            }
+            else if (other.CompareTag("Enemy"))
+            {
             }
             Destroy(gameObject);
         }
