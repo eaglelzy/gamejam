@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockControil : MonoBehaviour
+public class RockControl : MonoBehaviour
 {
     Rigidbody2D rb;
     public float force = 10;
