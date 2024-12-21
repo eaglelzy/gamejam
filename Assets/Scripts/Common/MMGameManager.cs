@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace MM.Common
+namespace MoreMountains.Tools
 {
     public enum GameEventType
     {

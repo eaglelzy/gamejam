@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5652435617577202335}
-  m_Layer: 0
+  m_Layer: 8
   m_HasEditorInfo: 1
   m_Name: FirePoint
   m_TagString: Untagged
@@ -44,8 +44,8 @@ GameObject:
   - component: {fileID: 4153437060766157932}
   - component: {fileID: 72231147090306981}
   - component: {fileID: 6828858215077430853}
-  - component: {fileID: 1049069768776457292}
-  m_Layer: 0
+  - component: {fileID: -6787849841198017627}
+  m_Layer: 8
   m_HasEditorInfo: 1
   m_Name: Enemy1
   m_TagString: Enemy
@@ -185,7 +185,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1049069768776457292
+--- !u!114 &-6787849841198017627
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,6 +194,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9025669663372374963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d965c261e65b4e4eb4eff1d17b19201, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fb1ec01fcd2d9142857729f79c5e97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 4
+  attackDistance: 4

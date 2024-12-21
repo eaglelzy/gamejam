@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using MoreMountains.Tools;
+using UnityEngine;
 
 namespace TS.Projectile {
 
@@ -42,6 +43,7 @@ namespace TS.Projectile {
             }
             else if (other.CompareTag("Enemy"))
             {
+                other.SetActive(false);
             }
             Destroy(gameObject);
         }

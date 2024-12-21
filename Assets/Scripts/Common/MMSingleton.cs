@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MM.Common
+namespace MoreMountains.Tools
 {
     public class MMSingleton<T> : MonoBehaviour where T : Component
     {

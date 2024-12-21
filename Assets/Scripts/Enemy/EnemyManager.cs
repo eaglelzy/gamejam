@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MM.Common;
+using MoreMountains.Tools;
 using System;
+using MoreMountains.Feedbacks;
 
 /// <summary>
 /// 敌人管理
 /// </summary>
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : MMSingleton<EnemyManager>
 {
     [Tooltip("敌人配置")]
     [SerializeField]
     private List<EnemyConfig> enemyConfigList = new();
+
+    [Tooltip("玩家")]
+    [SerializeField]
+    public GameObject player;
 
     private float gameTimer = 0f;
     private float timer = 0f;
@@ -50,7 +55,13 @@ public class EnemyManager : MonoBehaviour
             var config = enemyConfigList[i];
             if (((int)gameTimer % config.spawnIntervalTime == 0))
             {
-                var enemy = Instantiate(config.enemyPrefab, new Vector3(x, topLeft.y, 0), Quaternion.identity, transform);
+                var enemy = ((MMMultipleObjectPooler)MMObjectPooler.Instance).GetPooledGameObjectOfType(config.enemyPrefab.name);
+                if (enemy != null)
+                {
+                    enemy.transform.localPosition = new Vector3(x, topLeft.y, 0);
+                    enemy.transform.parent = transform;
+                    enemy.gameObject.SetActive(true);
+                }
             }
         }
     }

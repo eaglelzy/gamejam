@@ -6,7 +6,7 @@ using UnityEngine;
 ///
 /// 事件管理
 ///
-namespace MM.Common
+namespace MoreMountains.Tools
 {
 
 
