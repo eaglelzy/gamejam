@@ -17,7 +17,8 @@ namespace TS.Projectile {
 
         private void OnCollisionEnter2D(Collision2D collision) {
             var other = collision.gameObject;
-            if (other.CompareTag("Enemy")) {
+            if (other.CompareTag("Enemy"))
+            {
                 Destroy(other);
             }
             Destroy(gameObject);
