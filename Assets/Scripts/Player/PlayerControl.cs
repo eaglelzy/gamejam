@@ -33,43 +33,38 @@ namespace TS.Player {
         }
 
         private void Update() {
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+            //isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-            movement.x = Input.GetAxisRaw("Horizontal");
+            //movement.x = Input.GetAxisRaw("Horizontal");
             //movement.y = Input.GetAxisRaw("Vertical");
 
             // if(movement.magnitude > 0) { animator.Play("Samurai_Run"); } else {
             // animator.Play("Samurai_Idle"); }
 
-            if (movement.x > 0) {
-                transform.localScale = Vector3.one;
-            } else {
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
+            // if (movement.x > 0) {
+            //     transform.localScale = Vector3.one;
+            // } else {
+            //     transform.localScale = new Vector3(-1, 1, 1);
+            // }
 
             if (Input.GetMouseButtonDown(0)) {
                 weaponController.Attack();
             }
             // 跳跃
-            if (Input.GetButtonDown("Jump") && isGrounded) {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            }
+            // if (Input.GetButtonDown("Jump") && isGrounded) {
+            //     rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            // }
             //var aimPoint = playerCamera.ScreenToWorldPoint(Input.mousePosition);
             var aimPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //可以直接用Camera.main获取主相机
             weaponController.Aim(aimPoint);
         }
 
         //物体的移动一般在FixedUpdate中执行
-        private void FixedUpdate() {
-            var targetVelocity = new Vector2(movement.x * moveSpeed, rb.velocity.y);
-            //只用x轴的速度
-            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref _currentVelocity, moveSmoothTime);
-        }
+        // private void FixedUpdate() {
+        //     var targetVelocity = new Vector2(movement.x * moveSpeed, rb.velocity.y);
+        //     //只用x轴的速度
+        //     rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref _currentVelocity, moveSmoothTime);
+        // }
 
-        private void OnDrawGizmosSelected() {
-            // 可视化地面检测范围
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
-        }
     }
 }
