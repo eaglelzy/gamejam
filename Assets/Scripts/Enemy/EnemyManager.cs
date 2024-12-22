@@ -59,7 +59,7 @@ public class EnemyManager : MMSingleton<EnemyManager>
                 if (enemy != null)
                 {
                     enemy.transform.localPosition = new Vector3(x, topLeft.y, 0);
-                    enemy.transform.parent = transform;
+                    //enemy.transform.parent = transform;
                     enemy.gameObject.SetActive(true);
                 }
             }
