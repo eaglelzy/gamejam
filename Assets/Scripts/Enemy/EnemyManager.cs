@@ -34,7 +34,7 @@ public class EnemyManager : MMSingleton<EnemyManager>
         timer += Time.deltaTime;
         if (timer > intervalTime)
         {
-            SpawnEnemy();
+            StartCoroutine(SpawnEnemy());
             timer = 0f;
         }
     }
@@ -42,25 +42,29 @@ public class EnemyManager : MMSingleton<EnemyManager>
     /// <summary>
     /// 生成敌人
     /// </summary>
-    private void SpawnEnemy()
+    private IEnumerator SpawnEnemy()
     {
         // 获取屏幕边缘的世界坐标
         Camera camera = Camera.main;
         Vector3 topLeft = camera.ScreenToWorldPoint(new Vector3(0, Screen.height, camera.nearClipPlane));
         Vector3 topRight = camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, camera.nearClipPlane));
         //Vector3 bottomLeft = camera.ScreenToWorldPoint(new Vector3(0, 0, camera.nearClipPlane));
-        float x = UnityEngine.Random.Range(topLeft.x, topRight.x);
+        int time = (int)gameTimer;
         for (int i = 0; i < enemyConfigList.Count; i++)
         {
             var config = enemyConfigList[i];
-            if (((int)gameTimer % config.spawnIntervalTime == 0))
+            if ((time % config.spawnIntervalTime == 0))
             {
-                var enemy = ((MMMultipleObjectPooler)MMObjectPooler.Instance).GetPooledGameObjectOfType(config.enemyPrefab.name);
-                if (enemy != null)
+                float x = UnityEngine.Random.Range(topLeft.x, topRight.x);
+                if (time > config.spawnStartTime && (time < config.spawnEndTime || config.spawnEndTime == -1))
                 {
-                    enemy.transform.localPosition = new Vector3(x, topLeft.y, 0);
-                    //enemy.transform.parent = transform;
-                    enemy.gameObject.SetActive(true);
+                    var enemy = ((MMMultipleObjectPooler)MMObjectPooler.Instance).GetPooledGameObjectOfType(config.enemyPrefab.name);
+                    if (enemy != null)
+                    {
+                        enemy.transform.localPosition = new Vector3(x, topLeft.y, 0);
+                        enemy.gameObject.SetActive(true);
+                        yield return null;
+                    }
                 }
             }
         }
