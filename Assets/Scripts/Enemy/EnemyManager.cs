@@ -63,7 +63,7 @@ public class EnemyManager : MMSingleton<EnemyManager>
                     {
                         enemy.transform.localPosition = new Vector3(x, topLeft.y, 0);
                         enemy.gameObject.SetActive(true);
-                        yield return null;
+                        yield return new WaitForSeconds(0.3f);
                     }
                 }
             }
