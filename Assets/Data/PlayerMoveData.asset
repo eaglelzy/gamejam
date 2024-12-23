@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityStrength: -32
   gravityScale: 3.2619774
-  fallGravityMult: 1.5
+  fallGravityMult: 2
   maxFallSpeed: 10
   fastFallGravityMult: 1.8
   maxFastFallSpeed: 10
@@ -37,7 +37,7 @@ MonoBehaviour:
   coyoteTime: 0.1
   jumpInputBufferTime: 0.1
   dashAmount: 1
-  dashSpeed: 45
+  dashSpeed: 20
   dashSleepTime: 0.05
   dashAttackTime: 0.15
   dashEndTime: 0.05

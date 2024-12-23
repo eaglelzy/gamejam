@@ -30,9 +30,12 @@ public class RoadGenerator : MonoBehaviour
         Vector3 targetPosition = currentRoad.position + new Vector3(x, y, 0);
         Quaternion quaternion = Quaternion.Euler(currentAngle);
 
-        GameObject road = Instantiate(roadPrefab, targetPosition, quaternion);
+        currentRoad = Instantiate(roadPrefab, targetPosition, quaternion).transform;
 
-        loadRoadMark = road.transform.Find("loadRoadMark");
+        loadRoadMark = currentRoad.transform.Find("loadRoadMark");
+
+        //增加角度
+        currentAngle += new Vector3(0, 0, .1f);
     }
 
     private void Start() {
