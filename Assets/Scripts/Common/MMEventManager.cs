@@ -46,7 +46,7 @@ namespace MoreMountains.Tools
             if (!_subscribersList.ContainsKey(eventType)) return;
             List<IMMEventListener> list = _subscribersList[eventType];
 
-            for (int i = list.Count - 1; i > 0; i--)
+            for (int i = list.Count - 1; i >= 0; i--)
             {
                 if (list[i] == listener)
                 {
@@ -63,7 +63,7 @@ namespace MoreMountains.Tools
         public static void TriggerEvent<MMEvent>(MMEvent newEvent) where MMEvent : struct
         {
             if (!_subscribersList.TryGetValue(typeof(MMEvent), out var listenerList)) return;
-            for (int i = listenerList.Count - 1; i > 0; i--)
+            for (int i = listenerList.Count - 1; i >= 0; i--)
             {
                 (listenerList[i] as MMEventListener<MMEvent>).OnMMEvent(newEvent);
             }

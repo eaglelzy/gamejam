@@ -21,6 +21,7 @@ public abstract class BaseEnemyAI : MonoBehaviour
 
     protected bool faceRight = true;
 
+    protected Animator animator;
     protected bool FaceRight { 
         set {
             if (faceRight != value)
@@ -48,12 +49,13 @@ public abstract class BaseEnemyAI : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    public virtual void Awake()
+    protected virtual void Awake()
     {
         machine = new MMStateMachine<EnemyStates.Enemy1State>(gameObject, true); 
         machine.ChangeState(EnemyStates.Enemy1State.Idle);
         player = EnemyManager.Instance.player;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         FaceRight = true;
     }
 }

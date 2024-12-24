@@ -4,6 +4,7 @@ using UnityEngine;
 using MoreMountains.Tools;
 using System;
 using MoreMountains.Feedbacks;
+using UnityEditor.SceneTemplate;
 
 /// <summary>
 /// µ–»Àπ‹¿Ì
@@ -53,17 +54,20 @@ public class EnemyManager : MMSingleton<EnemyManager>
         for (int i = 0; i < enemyConfigList.Count; i++)
         {
             var config = enemyConfigList[i];
-            if ((time % config.spawnIntervalTime == 0))
+            if (time >= config.spawnStartTime)
             {
-                float x = UnityEngine.Random.Range(topLeft.x, topRight.x);
-                if (time > config.spawnStartTime && (time < config.spawnEndTime || config.spawnEndTime == -1))
+                if (time % config.spawnIntervalTime == (config.spawnStartTime % config.spawnIntervalTime))
                 {
-                    var enemy = ((MMMultipleObjectPooler)MMObjectPooler.Instance).GetPooledGameObjectOfType(config.enemyPrefab.name);
-                    if (enemy != null)
+                    float x = UnityEngine.Random.Range(topLeft.x, topRight.x);
+                    if ((time < config.spawnEndTime || config.spawnEndTime == -1))
                     {
-                        enemy.transform.localPosition = new Vector3(x, topLeft.y, 0);
-                        enemy.gameObject.SetActive(true);
-                        yield return new WaitForSeconds(0.3f);
+                        var enemy = ((MMMultipleObjectPooler)MMObjectPooler.Instance).GetPooledGameObjectOfType(config.enemyPrefab.name);
+                        if (enemy != null)
+                        {
+                            enemy.transform.localPosition = new Vector3(x, topLeft.y, 0);
+                            enemy.gameObject.SetActive(true);
+                            yield return new WaitForSeconds(0.3f);
+                        }
                     }
                 }
             }

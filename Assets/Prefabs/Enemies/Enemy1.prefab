@@ -198,11 +198,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb1ec01fcd2d9142857729f79c5e97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsRight: 0
   moveSpeed: 4
   warnRange: 3
   attackSpeed: 3
   attackDistance: 4
-  IsRight: 0
 --- !u!95 &5289832552688579195
 Animator:
   serializedVersion: 5

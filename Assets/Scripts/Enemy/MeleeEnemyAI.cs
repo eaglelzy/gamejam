@@ -1,4 +1,5 @@
 using MoreMountains.Tools;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
@@ -25,11 +26,20 @@ public class MeleeEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Enem
     [SerializeField]
     private float attackDistance = 2;
 
+    private float speed = 2;
+
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     private void OnEnable()
     {
 		MMEventManager.AddListener(this);
         machine.ChangeState(EnemyStates.Enemy1State.Idle);
         FaceRight = true;
+        speed = moveSpeed;
     }
 
     private void OnDisable()
@@ -40,7 +50,7 @@ public class MeleeEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Enem
     private void Update()
     {
         var distance = (player.transform.position - transform.position).magnitude;
-        if (distance < attackDistance)
+        if (distance < warnRange)
         {
             if (machine.CurrentState != EnemyStates.Enemy1State.Attack)
             {
@@ -49,7 +59,7 @@ public class MeleeEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Enem
         }
         else
         {
-            if (machine.CurrentState != EnemyStates.Enemy1State.Move)
+            if (machine.CurrentState == EnemyStates.Enemy1State.Idle)
             {
                 machine.ChangeState(EnemyStates.Enemy1State.Move);
             }
@@ -78,10 +88,31 @@ public class MeleeEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Enem
             case EnemyStates.Enemy1State.Attack:
                 CheckFace();
                 rb.velocity = Vector2.zero;
+                //animator.SetBool("Attack", true);
+                //StartCoroutine(PlayAnimation(1));
+                //animator.SetBool("Attack", false);
+                machine.ChangeState(EnemyStates.Enemy1State.Idle);
                 break;
             case EnemyStates.Enemy1State.Dead:
+                //animator.SetBool("IsDeath", true);
+                //StartCoroutine(PlayAnimation(1));
+                //animator.SetBool("IsDeath", false);
                 gameObject.SetActive(false);
+                break;
+            case EnemyStates.Enemy1State.IsHit:
+                //animator.SetTrigger("IsHit");
+                //StartCoroutine(PlayAnimation(1));
+                machine.ChangeState(EnemyStates.Enemy1State.Idle);
+                break;
+            case EnemyStates.Enemy1State.Idle:
                 break;
         }
     }
+
+    IEnumerator PlayAnimation(float seconds)
+    {
+        yield return new WaitForSeconds(seconds); 
+    }
+
+
 }
