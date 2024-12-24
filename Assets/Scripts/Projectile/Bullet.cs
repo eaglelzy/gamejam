@@ -41,12 +41,14 @@ namespace TS.Projectile {
                 {
                     rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
                 }
+                Destroy(gameObject);
             }
             else if (other.CompareTag("Enemy"))
             {
                 other.SetActive(false);
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }

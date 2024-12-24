@@ -14,8 +14,8 @@ namespace TS.Player {
 
         private void Update() {
 
-            if (Input.GetMouseButtonDown(0)) {
-                weaponController.Attack();
+            if (Input.GetMouseButton(0)) {
+                weaponController.TryAttack();
             }
             //var aimPoint = playerCamera.ScreenToWorldPoint(Input.mousePosition);
             var aimPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //可以直接用Camera.main获取主相机

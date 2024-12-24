@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RoadGenerator : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject roadPrefab;
+    [SerializeField] [Tooltip("生成路预制体列表")]
+    private List<GameObject> roadPrefabList;
 
     //需要生成路的标志，相机越过该标志，生成路
     Transform loadRoadMark;
@@ -16,11 +16,21 @@ public class RoadGenerator : MonoBehaviour
     private Vector3 currentAngle = new Vector3(0, 0, 12);
 
     private Vector3 roadOffset = new Vector3(5, 5, 0);
+
+    //生成的路list
+    private List<GameObject> roadList = new List<GameObject>();
+
+    public int RoadCount {
+        get {
+            return roadList.Count;
+        }
+    }
     
     //初始化loadRoadMark
     void Init() {
         currentRoad = transform.GetChild(0);
-        loadRoadMark = currentRoad.Find("loadRoadMark");   
+        loadRoadMark = currentRoad.Find("loadRoadMark");
+        roadList.Add(currentRoad.gameObject);
     }
 
     void GenerateRoad() {
@@ -30,12 +40,21 @@ public class RoadGenerator : MonoBehaviour
         Vector3 targetPosition = currentRoad.position + new Vector3(x, y, 0);
         Quaternion quaternion = Quaternion.Euler(currentAngle);
 
+        //若干层后，换一种路
+        int index = RoadCount / 5;
+        if(index >= roadPrefabList.Count) index = roadPrefabList.Count - 1;
+        GameObject roadPrefab = roadPrefabList[index];
+
+
         currentRoad = Instantiate(roadPrefab, targetPosition, quaternion).transform;
+        roadList.Add(currentRoad.gameObject);
 
         loadRoadMark = currentRoad.transform.Find("loadRoadMark");
 
         //增加角度
         currentAngle += new Vector3(0, 0, .1f);
+
+        LevelManager.Instance.UpdateHeightText();
     }
 
     private void Start() {

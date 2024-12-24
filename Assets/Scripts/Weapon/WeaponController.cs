@@ -7,6 +7,8 @@ namespace TS.Weapon {
 
         public abstract void Attack();
 
+        public abstract bool TryAttack();
+
         public abstract void Aim(Vector2 target);
     }
 }
