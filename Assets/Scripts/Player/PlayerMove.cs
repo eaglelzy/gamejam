@@ -218,7 +218,7 @@ public class PlayerMove : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         RefillDashNow(1);
-        Destroy(collision.gameObject);
+        //Destroy(collision.gameObject);
     }
     #endregion
 

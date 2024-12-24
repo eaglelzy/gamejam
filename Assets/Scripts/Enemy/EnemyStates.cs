@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class EnemyStates 
 {
-    public enum Enemy1State { Idle, Move, Attack, IsHit, Dead }
+    public enum MeleeEnemyState { Idle, Move, Accelerate, Attack, IsHit, Dead }
+    public enum RemoteEnemyState { Idle, Move, Attack, IsHit, Dead }
 }

@@ -180,7 +180,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -200,9 +200,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsRight: 0
   moveSpeed: 4
-  warnRange: 3
-  attackSpeed: 3
-  attackDistance: 4
+  warnRange: 4
+  attackSpeed: 5
+  coldDown: 2
 --- !u!95 &5289832552688579195
 Animator:
   serializedVersion: 5

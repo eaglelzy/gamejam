@@ -9,7 +9,7 @@ using UnityEngine;
 /// <summary>
 /// 远程敌人ai
 /// </summary>
-public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<EnemyStates.Enemy1State>>
+public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<EnemyStates.RemoteEnemyState>>
 {
     [Tooltip("移动速度")]
     [SerializeField]
@@ -25,11 +25,19 @@ public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Ene
 
     private float coldDownTime;
 
+    private MMStateMachine<EnemyStates.RemoteEnemyState> machine;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        machine = new MMStateMachine<EnemyStates.RemoteEnemyState>(gameObject, true);
+    }
+
     private void OnEnable()
     {
         Debug.Log("OnEnable");
-		MMEventManager.AddListener<MMStateChangeEvent<EnemyStates.Enemy1State>>(this);
-        machine.ChangeState(EnemyStates.Enemy1State.Idle);
+		MMEventManager.AddListener<MMStateChangeEvent<EnemyStates.RemoteEnemyState>>(this);
+        machine.ChangeState(EnemyStates.RemoteEnemyState.Idle);
         FaceRight = true;
         coldDownTime = 0;
     }
@@ -42,23 +50,23 @@ public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Ene
 
     private void Update()
     {
-        if (machine.CurrentState != EnemyStates.Enemy1State.Attack)
+        if (machine.CurrentState != EnemyStates.RemoteEnemyState.Attack)
         {
             coldDownTime -= Time.deltaTime;
         }
         var distance = (player.transform.position - transform.position).magnitude;
         if (distance < warnRange)
         {
-            if (machine.CurrentState != EnemyStates.Enemy1State.Attack && coldDownTime <= 0)
+            if (machine.CurrentState != EnemyStates.RemoteEnemyState.Attack && coldDownTime <= 0)
             {
-                machine.ChangeState(EnemyStates.Enemy1State.Attack);
+                machine.ChangeState(EnemyStates.RemoteEnemyState.Attack);
             }
         }
         else
         {
-            if (machine.CurrentState == EnemyStates.Enemy1State.Idle)
+            if (machine.CurrentState == EnemyStates.RemoteEnemyState.Idle)
             {
-                machine.ChangeState(EnemyStates.Enemy1State.Move);
+                machine.ChangeState(EnemyStates.RemoteEnemyState.Move);
             }
         }
     }
@@ -66,7 +74,7 @@ public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Ene
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (machine.CurrentState == EnemyStates.Enemy1State.Move)
+        if (machine.CurrentState == EnemyStates.RemoteEnemyState.Move)
         {
             Vector3 targetDir = (player.transform.position - transform.position).normalized;
             rb.velocity = moveSpeed  * targetDir; 
@@ -75,7 +83,7 @@ public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Ene
 
 
 
-    public void OnMMEvent(MMStateChangeEvent<EnemyStates.Enemy1State> eventType)
+    public void OnMMEvent(MMStateChangeEvent<EnemyStates.RemoteEnemyState> eventType)
     {
         if (eventType.Target != gameObject)
         {
@@ -84,31 +92,31 @@ public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Ene
         Debug.Log(eventType.NewState);
         switch (eventType.NewState)
         {
-            case EnemyStates.Enemy1State.Move:
+            case EnemyStates.RemoteEnemyState.Move:
                 CheckFace();
                 break;
-            case EnemyStates.Enemy1State.Attack:
+            case EnemyStates.RemoteEnemyState.Attack:
                 CheckFace();
                 rb.velocity = Vector2.zero;
                 animator.SetBool("Attack", true);
                 Invoke(nameof(AttackEnd), 2);
                 break;
-            case EnemyStates.Enemy1State.Dead:
+            case EnemyStates.RemoteEnemyState.Dead:
                 animator.SetBool("IsDeath", true);
                 Invoke(nameof(Death), 1);
                 break;
-            case EnemyStates.Enemy1State.IsHit:
+            case EnemyStates.RemoteEnemyState.IsHit:
                 animator.SetTrigger("IsHit");
                 Invoke(nameof(IsHit), 1);
                 break;
-            case EnemyStates.Enemy1State.Idle:
+            case EnemyStates.RemoteEnemyState.Idle:
                 break;
         }
     }
 
     private void IsHit()
     {
-        machine.ChangeState(EnemyStates.Enemy1State.Idle);
+        machine.ChangeState(EnemyStates.RemoteEnemyState.Idle);
     }
 
     private void Death()
@@ -119,21 +127,8 @@ public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Ene
     private void AttackEnd()
     {
         animator.SetBool("Attack", false);
-        machine.ChangeState(EnemyStates.Enemy1State.Idle);
+        machine.ChangeState(EnemyStates.RemoteEnemyState.Idle);
         coldDownTime = coldDown;
     }
 
-    IEnumerator PlayAnimation(string name, float seconds, Action action = null)
-    {
-        yield return new WaitForSeconds(seconds); 
-        animator.SetBool(name, false);
-        action?.Invoke();
-    }
-
-    IEnumerator PlayTrggerAnimation(string name, float seconds, Action action = null)
-    {
-        animator.SetTrigger(name);
-        yield return new WaitForSeconds(seconds); 
-        action?.Invoke();
-    }
 }

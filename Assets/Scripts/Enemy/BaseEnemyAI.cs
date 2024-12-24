@@ -13,8 +13,6 @@ public abstract class BaseEnemyAI : MonoBehaviour
     [SerializeField]
     protected bool IsRight = true;
 
-    protected MMStateMachine<EnemyStates.Enemy1State> machine;
-
     protected GameObject player;
 
     protected Rigidbody2D rb;
@@ -51,8 +49,6 @@ public abstract class BaseEnemyAI : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Awake()
     {
-        machine = new MMStateMachine<EnemyStates.Enemy1State>(gameObject, true); 
-        machine.ChangeState(EnemyStates.Enemy1State.Idle);
         player = EnemyManager.Instance.player;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
