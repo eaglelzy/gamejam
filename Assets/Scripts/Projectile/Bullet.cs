@@ -1,4 +1,5 @@
 ﻿using MoreMountains.Tools;
+using System.Collections;
 using UnityEngine;
 
 namespace TS.Projectile {
@@ -15,6 +16,10 @@ namespace TS.Projectile {
         [Tooltip("石头最大速度")]
         [SerializeField]
         private int maxSpeed = 2;
+
+        [Tooltip("爆炸特效")]
+        [SerializeField]
+        private GameObject explodeEffect;
 
         // 滚动方向
         private Vector2 scrollDirection = new(1, 0.2f);
@@ -46,9 +51,10 @@ namespace TS.Projectile {
             else if (other.CompareTag("Enemy"))
             {
                 other.SetActive(false);
+                var effect = Instantiate(explodeEffect, transform.position, Quaternion.identity);
+                Destroy(effect, 0.5f);
                 Destroy(gameObject);
             }
-            //Destroy(gameObject);
         }
     }
 }

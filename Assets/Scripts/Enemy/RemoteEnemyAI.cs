@@ -35,7 +35,6 @@ public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Ene
 
     private void OnEnable()
     {
-        Debug.Log("OnEnable");
 		MMEventManager.AddListener<MMStateChangeEvent<EnemyStates.RemoteEnemyState>>(this);
         machine.ChangeState(EnemyStates.RemoteEnemyState.Idle);
         FaceRight = true;
@@ -44,7 +43,6 @@ public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Ene
 
     private void OnDisable()
     {
-        Debug.Log("OnDisable");
 		MMEventManager.RemoveListener(this);
     }
 
