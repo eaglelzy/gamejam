@@ -14,7 +14,7 @@ public class EnvironmentControl : MonoBehaviour
         target = Camera.main.transform;
     }
 
-    private void Update() {
+    private void LateUpdate() {
         
         moveNode.position = new Vector3(target.position.x, target.position.y, moveNode.position.z);
     }
