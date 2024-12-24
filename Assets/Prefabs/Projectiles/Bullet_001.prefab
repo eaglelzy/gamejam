@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 718363008103212687}
   - component: {fileID: 103765871939520748}
   - component: {fileID: 1605340847035850163}
-  - component: {fileID: -2087093448957353675}
+  - component: {fileID: -1331089437534168533}
   m_Layer: 9
   m_HasEditorInfo: 1
   m_Name: Bullet_001
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1821335805
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -943592288, guid: 4bd7e27cfe517944aa33b51a2eb1ce0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -124,10 +124,10 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 72
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 584
+    m_Bits: 1015
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -174,7 +174,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-2087093448957353675
+--- !u!114 &-1331089437534168533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,11 +183,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4639309735049916335}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de2c3a09220659d4cb880deff4537d3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ee368e052dcf674f8393fa5d524dc97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 1
-  torque: 100
-  bulletForce: 500
-  maxSpeed: 2
+  caster: {fileID: 0}
+  weaponData: {fileID: 0}
   explodeEffect: {fileID: 2032883686903336501, guid: 306f966727f4f2147a0e23ed9352d1ba, type: 3}

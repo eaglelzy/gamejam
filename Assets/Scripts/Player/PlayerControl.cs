@@ -1,3 +1,4 @@
+using System.Collections;
 using TS.Weapon;
 using UnityEngine;
 
@@ -20,6 +21,19 @@ namespace TS.Player {
             //var aimPoint = playerCamera.ScreenToWorldPoint(Input.mousePosition);
             var aimPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //可以直接用Camera.main获取主相机
             weaponController.Aim(aimPoint);
+        }
+
+        public void StartBlink(Material mat)
+        {
+            StartCoroutine(Blink(mat));
+        }
+        private IEnumerator Blink(Material mat)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                mat.SetColor("_Color", i % 2 == 0 ? Color.red : Color.white );
+                yield return new WaitForSeconds(0.1f);
+            }
         }
     }
 }

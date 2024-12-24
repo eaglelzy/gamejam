@@ -54,6 +54,11 @@ public class EnemyManager : MMSingleton<EnemyManager>
         for (int i = 0; i < enemyConfigList.Count; i++)
         {
             var config = enemyConfigList[i];
+
+            if (time % 30 == 0)
+            {
+                config.spawnIntervalTime = Math.Max(1, (int)Math.Floor(config.spawnIntervalTime * 0.8));
+            }
             if (time >= config.spawnStartTime)
             {
                 if (time % config.spawnIntervalTime == (config.spawnStartTime % config.spawnIntervalTime))

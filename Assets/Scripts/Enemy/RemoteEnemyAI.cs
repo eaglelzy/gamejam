@@ -23,6 +23,14 @@ public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Ene
     [SerializeField]
     private float coldDown = 2;
 
+    [Tooltip("ÎäÆ÷")]
+    [SerializeField]
+    private WeaponData weaponData;
+
+    [Tooltip("ÎäÆ÷·¢Éäµã")]
+    [SerializeField]
+    private Transform firePoint;
+
     private float coldDownTime;
 
     private MMStateMachine<EnemyStates.RemoteEnemyState> machine;
@@ -87,7 +95,6 @@ public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Ene
         {
             return;
         }
-        Debug.Log(eventType.NewState);
         switch (eventType.NewState)
         {
             case EnemyStates.RemoteEnemyState.Move:
@@ -97,7 +104,7 @@ public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Ene
                 CheckFace();
                 rb.velocity = Vector2.zero;
                 animator.SetBool("Attack", true);
-                Invoke(nameof(AttackEnd), 2);
+                Invoke(nameof(AttackEnd), 1.2f);
                 break;
             case EnemyStates.RemoteEnemyState.Dead:
                 animator.SetBool("IsDeath", true);
@@ -125,6 +132,15 @@ public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Ene
     private void AttackEnd()
     {
         animator.SetBool("Attack", false);
+        GameObject bullet = Instantiate(weaponData.bulletPrefab, firePoint.position, firePoint.rotation);
+        var bulletData = bullet.GetComponent<EnemyBulletData>();
+        bulletData.weaponData = weaponData;
+        bulletData.caster = gameObject;
+        var dir = player.transform.position - bullet.transform.position;
+        bullet.transform.right = dir;
+        var rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddRelativeForce(dir * weaponData.bulletSpeed * rb.mass, ForceMode2D.Impulse);
+
         machine.ChangeState(EnemyStates.RemoteEnemyState.Idle);
         coldDownTime = coldDown;
     }

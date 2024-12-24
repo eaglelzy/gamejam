@@ -2048,6 +2048,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 1195541923
       objectReference: {fileID: 0}
+    - target: {fileID: 7245723477999313936, guid: 1d85fd9ee2fc79c4188c4f09387bca01, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 21195d61fe79740478ee9391a985aa48, type: 2}
     - target: {fileID: 8483100801622268863, guid: 1d85fd9ee2fc79c4188c4f09387bca01, type: 3}
       propertyPath: currentWeaponData
       value: 
