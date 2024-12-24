@@ -32,7 +32,8 @@ namespace TS.Projectile {
 
         private void OnTriggerEnter2D(Collider2D collision) {
             var other = collision.gameObject;
-            if (other.CompareTag("Rock")) {
+            if (other.CompareTag("Rock"))
+            {
                 var rb = collision.attachedRigidbody;
                 var targetDir = other.transform.position - transform.position;
                 rb.AddForce(scrollDirection * (targetDir.x > 0 ? 1 : -1) * bulletForce, ForceMode2D.Impulse);

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class EnemyStates 
 {
-    public enum Enemy1State { Normal, Move, Attack, Paused, Dead }
+    public enum Enemy1State { Idle, Move, Attack, IsHit, Dead }
 }

@@ -1,36 +1,35 @@
 using MoreMountains.Tools;
 using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 
-public class Enemy1AI : MonoBehaviour, MMEventListener<MMStateChangeEvent<EnemyStates.Enemy1State>>
+/// <summary>
+/// ½üÕ½µÐÈËai
+/// </summary>
+public class MeleeEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<EnemyStates.Enemy1State>>
 {
     [Tooltip("ÒÆ¶¯ËÙ¶È")]
     [SerializeField]
     private float moveSpeed = 2;
 
-    [Tooltip("¹¥»÷¾àÀë")]
+    [Tooltip("¾¯½ä·¶Î§")]
     [SerializeField]
-    private float attackDistance = 4;
+    private float warnRange = 3;
 
-    private MMStateMachine<EnemyStates.Enemy1State> machine;
+    [Tooltip("¹¥»÷ÒÆ¶¯ËÙ¶È")]
+    [SerializeField]
+    private float attackSpeed = 3;
 
-    private GameObject player;
-
-    private Rigidbody2D rb;
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        machine = new MMStateMachine<EnemyStates.Enemy1State>(gameObject, true); 
-        machine.ChangeState(EnemyStates.Enemy1State.Normal);
-        player = EnemyManager.Instance.player;
-        rb = GetComponent<Rigidbody2D>();
-    }
+    [Tooltip("¹¥»÷ÀäÈ´(Ãë)")]
+    [SerializeField]
+    private float attackDistance = 2;
 
     private void OnEnable()
     {
 		MMEventManager.AddListener(this);
+        machine.ChangeState(EnemyStates.Enemy1State.Idle);
+        FaceRight = true;
     }
 
     private void OnDisable()
@@ -62,18 +61,22 @@ public class Enemy1AI : MonoBehaviour, MMEventListener<MMStateChangeEvent<EnemyS
     {
         if (machine.CurrentState == EnemyStates.Enemy1State.Move)
         {
-            var targetDir = (player.transform.position - transform.position).normalized;
+            Vector3 targetDir = (player.transform.position - transform.position).normalized;
             rb.velocity = moveSpeed  * targetDir; 
         } 
     }
+
+
 
     public void OnMMEvent(MMStateChangeEvent<EnemyStates.Enemy1State> eventType)
     {
         switch(eventType.NewState)
         {
             case EnemyStates.Enemy1State.Move:
+                CheckFace();
                 break;
             case EnemyStates.Enemy1State.Attack:
+                CheckFace();
                 rb.velocity = Vector2.zero;
                 break;
             case EnemyStates.Enemy1State.Dead:

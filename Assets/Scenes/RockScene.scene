@@ -531,11 +531,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyConfigList:
   - enemyPrefab: {fileID: 9025669663372374963, guid: aab775bf531b59f47ab35bfec3863f3a, type: 3}
-    spawnStartTime: 5
+    spawnStartTime: 1
     spawnEndTime: 60
     spawnIntervalTime: 5
   - enemyPrefab: {fileID: 4447780099166059689, guid: d5410be2924071e4bbc9d57bed6a13f2, type: 3}
-    spawnStartTime: 10
+    spawnStartTime: 1
     spawnEndTime: 120
     spawnIntervalTime: 8
   player: {fileID: 1797344576}
@@ -1480,10 +1480,6 @@ MonoBehaviour:
     PoolCanExpand: 1
     Enabled: 0
   - GameObjectToPool: {fileID: 4447780099166059689, guid: d5410be2924071e4bbc9d57bed6a13f2, type: 3}
-    PoolSize: 1
-    PoolCanExpand: 1
-    Enabled: 0
-  - GameObjectToPool: {fileID: 6723360036194505544, guid: 25cfdf8a7ec389f4a8507d20955ae90e, type: 3}
     PoolSize: 1
     PoolCanExpand: 1
     Enabled: 0
