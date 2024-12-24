@@ -533,9 +533,9 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 9025669663372374963, guid: aab775bf531b59f47ab35bfec3863f3a, type: 3}
     spawnStartTime: 5
     spawnEndTime: -1
-    spawnIntervalTime: 4
+    spawnIntervalTime: 5
   - enemyPrefab: {fileID: 4447780099166059689, guid: d5410be2924071e4bbc9d57bed6a13f2, type: 3}
-    spawnStartTime: 6
+    spawnStartTime: 7
     spawnEndTime: -1
     spawnIntervalTime: 6
   player: {fileID: 1797344576}
@@ -617,7 +617,7 @@ Transform:
   m_GameObject: {fileID: 485647813}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.03, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
