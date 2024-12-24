@@ -538,10 +538,6 @@ MonoBehaviour:
     spawnStartTime: 10
     spawnEndTime: 120
     spawnIntervalTime: 8
-  - enemyPrefab: {fileID: 6723360036194505544, guid: 25cfdf8a7ec389f4a8507d20955ae90e, type: 3}
-    spawnStartTime: 20
-    spawnEndTime: -1
-    spawnIntervalTime: 10
   player: {fileID: 1797344576}
 --- !u!4 &437497075
 Transform:
