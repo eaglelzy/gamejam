@@ -41,7 +41,7 @@ public class RoadGenerator : MonoBehaviour
         Quaternion quaternion = Quaternion.Euler(currentAngle);
 
         //若干层后，换一种路
-        int index = RoadCount / 5;
+        int index = RoadCount / 4;
         if(index >= roadPrefabList.Count) index = roadPrefabList.Count - 1;
         GameObject roadPrefab = roadPrefabList[index];
 
@@ -65,5 +65,9 @@ public class RoadGenerator : MonoBehaviour
         if (loadRoadMark != null && Camera.main.transform.position.x > loadRoadMark.position.x) {
             GenerateRoad();
         }
+    }
+
+    private void GenerateItems(){
+
     }
 }
