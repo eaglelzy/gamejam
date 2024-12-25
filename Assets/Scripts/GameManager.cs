@@ -7,12 +7,12 @@ namespace TS {
     public class GameManager : ScriptableObject {
         public static GameManager Instance { get; private set; }
 
-        public void StartGame() {
-            SceneManager.LoadScene(1);
+        public void LoadScene(string sceneName) {
+            SceneManager.LoadScene(sceneName);
         }
 
-        public void ReturnMainMenu() {
-            SceneManager.LoadScene(0);
+        public void QuitGame() {
+            Application.Quit();
         }
 
         private void Awake() {
