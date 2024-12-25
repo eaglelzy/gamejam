@@ -22,5 +22,11 @@ namespace TS.Player {
                 }
             }
         }
+        private void OnValidate() {
+            if(TryGetComponent(out pushCollider)) {
+                pushCollider.isTrigger = true;
+                pushCollider.excludeLayers = int.MaxValue;
+            }
+        }
     }
 }
