@@ -71,7 +71,6 @@ public class EnemyManager : MMSingleton<EnemyManager>
     private IEnumerator SpawnEnemy()
     {
         yield return new WaitForSeconds(startTime);
-        Debug.Log("SpawnEnemy..");
         while (true)
         {
             yield return new WaitForSeconds(intervalTime);
