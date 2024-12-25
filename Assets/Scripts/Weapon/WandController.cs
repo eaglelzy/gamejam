@@ -49,7 +49,7 @@ namespace TS.Weapon {
             }else{
                 float spreadAngle = 45f; // 扩散角度
                 float angleStep = spreadAngle / (currentWeaponData.bulletCount - 1);
-                float startAngle = -spreadAngle / 2f;
+                float startAngle = -spreadAngle / 2f + 90f;
 
                 for (int i = 0; i < currentWeaponData.bulletCount; i++) {
                     // 计算每发子弹的角度
