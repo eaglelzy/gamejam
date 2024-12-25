@@ -23,6 +23,12 @@ namespace TS.Player {
             weaponController.Aim(aimPoint);
         }
 
+        public void IsDie()
+        {
+            UIManager.Instance.ShowGameOver(true);
+            GameManager.Instance.ChangeGameState(GameState.GameOver);
+        }
+
         public void StartBlink(Material mat)
         {
             StartCoroutine(Blink(mat));

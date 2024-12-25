@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Tools;
 using TS;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MMSingleton<UIManager>
 {
@@ -26,9 +27,11 @@ public class UIManager : MMSingleton<UIManager>
         {
             if (pauseMenu.activeSelf)
             {
+                ShowPause(false);
                 GameManager.Instance.ChangeGameState(GameState.Continue);
             } else
             {
+                ShowPause(true);
                 GameManager.Instance.ChangeGameState(GameState.Pause);
             }
         }
@@ -36,16 +39,28 @@ public class UIManager : MMSingleton<UIManager>
 
     public void ContinueClick()
     {
+        ShowPause(false);
         GameManager.Instance.ChangeGameState(GameState.Continue);
+    }
+
+
+    public void RestartClick()
+    {
+        ShowGameOver(false);
+        GameManager.Instance.ChangeGameState(GameState.Start);
     }
 
     public void MainMenuClick()
     {
+        ShowPause(false);
+        ShowGameOver(false);
         GameManager.Instance.LoadScene("EnterScene");
     }
 
     public void ExitClick()
     {
+        ShowPause(false);
+        ShowGameOver(false);
         GameManager.Instance.QuitGame();
     }
 
