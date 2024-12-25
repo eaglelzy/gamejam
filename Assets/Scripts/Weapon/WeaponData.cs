@@ -11,6 +11,7 @@ public class WeaponData : ScriptableObject
     public float damage;
     public float bulletSpeed;
     public int maxAmmo;
+    [Tooltip("是否是连发")]
     public bool isBurst;
     public float reloadTime;
     public float recoil;
