@@ -5,13 +5,19 @@ using UnityEngine.SceneManagement;
 namespace TS {
 
 
-public enum GameState { Start, Pause, Continue, GameOver, Win }
+public enum GameState {Normal, Start, Pause, Continue, GameOver, Win }
     //[CreateAssetMenu(fileName = nameof(GameManager), menuName = "Manager/" + nameof(GameManager))]
 public class GameManager : MMSingleton<GameManager>, MMEventListener<MMStateChangeEvent<GameState>>
  {
         //public static GameManager Instance { get; private set; }
 
         private MMStateMachine<GameState> machine;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            machine = new MMStateMachine<GameState>(gameObject, true);
+        }
         public void LoadScene(string sceneName) {
             SceneManager.LoadScene(sceneName);
         }
@@ -44,7 +50,6 @@ public class GameManager : MMSingleton<GameManager>, MMEventListener<MMStateChan
 
         private void OnEnable()
         {
-            machine = new MMStateMachine<GameState>(gameObject, true);
             MMEventManager.AddListener(this);
         }
 
