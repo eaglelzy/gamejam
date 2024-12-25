@@ -12,15 +12,19 @@ public class EnemyConfig
     [SerializeField]
     public GameObject enemyPrefab;
 
-    [Tooltip("多长时间后会出现(单位：秒)")]
+    [Tooltip("出现概率")]
     [SerializeField]
-    public int spawnStartTime;
+    public float rate = 0.5f;
 
-    [Tooltip("多长时间后不在出现(单位：秒), -1代表一直出现")]
-    [SerializeField]
-    public int spawnEndTime = -1;
+    //[Tooltip("多长时间后会出现(单位：秒)")]
+    //[SerializeField]
+    //public int spawnStartTime;
 
-    [Tooltip("每个多少秒生成")]
-    [SerializeField]
-    public int spawnIntervalTime;
+    //[Tooltip("多长时间后不在出现(单位：秒), -1代表一直出现")]
+    //[SerializeField]
+    //public int spawnEndTime = -1;
+
+    //[Tooltip("每个多少秒生成")]
+    //[SerializeField]
+    //public float spawnIntervalTime;
 }

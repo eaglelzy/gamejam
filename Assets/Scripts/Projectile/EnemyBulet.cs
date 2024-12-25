@@ -26,7 +26,7 @@ public class EnemyBulletData : MonoBehaviour
             other.GetComponent<PlayerControl>().StartBlink(mat);
             Health health = other.GetComponent<Health>();
             health.Damage(weaponData.damage, gameObject);
-            Debug.Log("玩家遭受" + gameObject.name + "攻击，受到 " + weaponData.damage  + " 点伤害");
+            //Debug.Log("玩家遭受" + gameObject.name + "攻击，受到 " + weaponData.damage  + " 点伤害");
             Destroy(gameObject);
         } else
         {

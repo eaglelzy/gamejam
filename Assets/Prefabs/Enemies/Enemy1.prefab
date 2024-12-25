@@ -200,10 +200,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsRight: 0
   moveSpeed: 4
-  warnRange: 4
-  attackSpeed: 5
+  warnRange: 6
+  attackSpeed: 6
   coldDown: 2
-  damage: 20
+  damage: 15
 --- !u!95 &5289832552688579195
 Animator:
   serializedVersion: 5

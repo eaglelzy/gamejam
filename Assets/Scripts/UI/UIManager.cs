@@ -4,6 +4,8 @@ using UnityEngine;
 using MoreMountains.Tools;
 using TS;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TS.Character;
 
 public class UIManager : MMSingleton<UIManager>
 {
@@ -11,14 +13,37 @@ public class UIManager : MMSingleton<UIManager>
     [SerializeField]
     private Canvas canvas;
 
+    [Tooltip("Íæ¼Ò")]
+    [SerializeField]
+    public GameObject player;
+
     private GameObject pauseMenu;
     private GameObject gameOverMenu;
+    private Slider heathSlider;
+    private Health health;
 
     protected override void Awake()
     {
         base.Awake();
         pauseMenu = canvas.transform.Find("PauseMenu").gameObject;
         gameOverMenu = canvas.transform.Find("GameOverMenu").gameObject;
+        heathSlider = canvas.transform.Find("Health").GetComponent<Slider>();
+        health = player.GetComponent<Health>();
+    }
+
+    private void OnEnable()
+    {
+        health.HealthChangedAction += HealthChanged;
+    }
+
+    private void OnDisable()
+    {
+        health.HealthChangedAction -= HealthChanged;
+    }
+
+    private void HealthChanged()
+    {
+        heathSlider.value = health.CurrentHealth / health.MaximumHealth; 
     }
 
     private void Update()

@@ -21,6 +21,8 @@ namespace TS.Character
         public UnityEvent OnDied;
         [NonSerialized] public bool IsDead;
 
+        public UnityAction HealthChangedAction;
+
 
         protected virtual void Awake()
         {
@@ -44,6 +46,8 @@ namespace TS.Character
         {
             CurrentHealth -= damage;
 
+            HealthChangedAction?.Invoke();
+
             if (CurrentHealth < 0)
             {
                 OnDied?.Invoke();
@@ -57,6 +61,7 @@ namespace TS.Character
         public virtual void SetHealth(float newValue)
         {
             CurrentHealth = newValue;     
+            HealthChangedAction?.Invoke();
         }
     }
 }

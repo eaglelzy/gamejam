@@ -19,24 +19,49 @@ public class EnemyManager : MMSingleton<EnemyManager>
     [SerializeField]
     public GameObject player;
 
-    private float gameTimer = 0f;
-    private float timer = 0f;
-    private readonly int intervalTime = 1;
+    [Tooltip("开始生成敌人时间")]
+    [SerializeField]
+    private float startTime = 3f;
+
+    [Tooltip("生成敌人间隔")]
+    [SerializeField]
+    private float intervalTime = 5f;
+
+    [Tooltip("每隔多少秒增加游戏难度")]
+    [SerializeField]
+    private int hardTime = 10;
+
+    [Tooltip("增加游戏难度rate")]
+    [SerializeField]
+    private float hardRate = 0.8f;
+
+    [Tooltip("最小间隔时间")]
+    [SerializeField]
+    private float minIntervalTime = 0.6f;
+
+    private float gameTime = 0f;
+    private bool flag = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(SpawnEnemy());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        gameTimer += Time.deltaTime;
-        timer += Time.deltaTime;
-        if (timer > intervalTime)
+        gameTime += Time.deltaTime;
+        int v = (int)(gameTime - startTime) % hardTime;
+        if (v == 0 && !flag)
         {
-            StartCoroutine(SpawnEnemy());
-            timer = 0f;
+            if (intervalTime > minIntervalTime)
+            {
+                intervalTime *= hardRate;
+            }
+            flag = true;
+        } else if (v == 1)
+        {
+            flag = false;
         }
     }
 
@@ -45,37 +70,50 @@ public class EnemyManager : MMSingleton<EnemyManager>
     /// </summary>
     private IEnumerator SpawnEnemy()
     {
-        // 获取屏幕边缘的世界坐标
-        Camera camera = Camera.main;
-        Vector3 topLeft = camera.ScreenToWorldPoint(new Vector3(0, Screen.height, camera.nearClipPlane));
-        Vector3 topRight = camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, camera.nearClipPlane));
-        //Vector3 bottomLeft = camera.ScreenToWorldPoint(new Vector3(0, 0, camera.nearClipPlane));
-        int time = (int)gameTimer;
+        yield return new WaitForSeconds(startTime);
+        Debug.Log("SpawnEnemy..");
+        while (true)
+        {
+            yield return new WaitForSeconds(intervalTime);
+            // 获取屏幕边缘的世界坐标
+            Camera camera = Camera.main;
+            Vector3 topLeft = camera.ScreenToWorldPoint(new Vector3(0, Screen.height, camera.nearClipPlane));
+            Vector3 topRight = camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, camera.nearClipPlane));
+            EnemyConfig config = RandomEnemy();
+            var enemy = ((MMMultipleObjectPooler)MMObjectPooler.Instance).GetPooledGameObjectOfType(config.enemyPrefab.name);
+            if (enemy != null)
+            {
+                float x = UnityEngine.Random.Range(topLeft.x, topRight.x);
+                enemy.transform.localPosition = new Vector3(x, topLeft.y, 0);
+                enemy.gameObject.SetActive(true);
+            }
+
+        }
+    }
+
+    private EnemyConfig RandomEnemy()
+    {
+        float total = 0f;
         for (int i = 0; i < enemyConfigList.Count; i++)
         {
-            var config = enemyConfigList[i];
-
-            if (time % 30 == 0)
+            total += enemyConfigList[i].rate;
+        }
+        float value = UnityEngine.Random.Range(0, total);
+        float rate = 0f;
+        int index = 0;
+        for (int i = 0; i < enemyConfigList.Count; i++)
+        {
+            rate += enemyConfigList[i].rate;
+            if (value > rate)
             {
-                config.spawnIntervalTime = Math.Max(1, (int)Math.Floor(config.spawnIntervalTime * 0.8));
-            }
-            if (time >= config.spawnStartTime)
-            {
-                if (time % config.spawnIntervalTime == (config.spawnStartTime % config.spawnIntervalTime))
-                {
-                    float x = UnityEngine.Random.Range(topLeft.x, topRight.x);
-                    if ((time < config.spawnEndTime || config.spawnEndTime == -1))
-                    {
-                        var enemy = ((MMMultipleObjectPooler)MMObjectPooler.Instance).GetPooledGameObjectOfType(config.enemyPrefab.name);
-                        if (enemy != null)
-                        {
-                            enemy.transform.localPosition = new Vector3(x, topLeft.y, 0);
-                            enemy.gameObject.SetActive(true);
-                            yield return new WaitForSeconds(0.3f);
-                        }
-                    }
-                }
+                index = i + 1; 
+                break;
             }
         }
+        if (index > enemyConfigList.Count)
+        {
+            index--;
+        }
+        return enemyConfigList[index];
     }
 }

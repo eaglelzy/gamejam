@@ -221,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsRight: 1
   moveSpeed: 3
-  warnRange: 5
+  warnRange: 7
   coldDown: 2
   weaponData: {fileID: 11400000, guid: 6b9e7c0f8dc7500419cf3dc28fb8f56c, type: 2}
   firePoint: {fileID: 1871536901387153272}
