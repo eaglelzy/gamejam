@@ -62,7 +62,7 @@ namespace TS.Projectile {
                 // {
                 //     rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
                 // }
-                collision.GetComponent<RockControl>().PowerUp(2);
+                collision.GetComponent<RockControl>().PowerUp(1.5f);
                 Destroy(gameObject);
             }
             else if (other.CompareTag("Enemy"))

@@ -12,7 +12,7 @@ public class RockControl : MonoBehaviour {
 
     public float MovePower { get; private set; } = 10; 
 
-    private float decreaseRate = 1; // 减少速率
+    private float decreaseRate = 2f; // 减少速率
 
     // Start is called before the first frame update
     private void Start() {
