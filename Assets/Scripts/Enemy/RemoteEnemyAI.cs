@@ -132,6 +132,10 @@ public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Ene
     private void AttackEnd()
     {
         animator.SetBool("Attack", false);
+        if (!gameObject.activeSelf || machine.CurrentState == EnemyStates.RemoteEnemyState.Dead)
+        {
+            return;
+        }
         GameObject bullet = Instantiate(weaponData.bulletPrefab, firePoint.position, firePoint.rotation);
         var bulletData = bullet.GetComponent<EnemyBulletData>();
         bulletData.weaponData = weaponData;
