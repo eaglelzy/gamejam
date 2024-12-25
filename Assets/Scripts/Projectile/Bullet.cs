@@ -57,11 +57,12 @@ namespace TS.Projectile {
             {
                 var rb = collision.attachedRigidbody;
                 var targetDir = other.transform.position - transform.position;
-                rb.AddForce(scrollDirection * (targetDir.x > 0 ? 1 : -1) * bulletForce, ForceMode2D.Impulse);
-                if (collision.attachedRigidbody.velocity.x > maxSpeed)
-                {
-                    rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
-                }
+                // rb.AddForce(scrollDirection * (targetDir.x > 0 ? 1 : -1) * bulletForce, ForceMode2D.Impulse);
+                // if (collision.attachedRigidbody.velocity.x > maxSpeed)
+                // {
+                //     rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+                // }
+                collision.GetComponent<RockControl>().PowerUp(2);
                 Destroy(gameObject);
             }
             else if (other.CompareTag("Enemy"))

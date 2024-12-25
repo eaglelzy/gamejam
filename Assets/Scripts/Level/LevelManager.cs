@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private RoadGenerator roadGenerator;
 
-    public Transform rock;
+    public RockControl rock;
 
     [Tooltip("当前高度")]
     public float Height { get; private set; }

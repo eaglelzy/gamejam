@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class RockControl : MonoBehaviour {
 
-    [Tooltip("��ʼ�½��ٶ�")]
     [SerializeField]
     private float force = 10;
 
     private Rigidbody2D rb;
 
-    private float movePower = 0; 
+
+    public float MovePower { get; private set; } = 10; 
+
+    private float decreaseRate = 1; // 减少速率
 
     // Start is called before the first frame update
     private void Start() {
@@ -19,7 +21,15 @@ public class RockControl : MonoBehaviour {
     }
 
     //石头被打
-    public void Hit(){
-        
+    public void PowerUp(float power) {
+        MovePower += power;
+    }
+
+    private void Update() {
+        if(MovePower > 0){
+            rb.velocity = new Vector3(3, 0, 0);
+            MovePower -= decreaseRate * Time.deltaTime; // 每秒减少
+            MovePower = Mathf.Max(MovePower, 0); // 防止变成负数
+        }
     }
 }
