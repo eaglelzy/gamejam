@@ -7,6 +7,9 @@ namespace MoreMountains.Tools
         public static T Current => _instance;
         protected static T _instance;
 
+        [SerializeField]
+        public bool dontDestroyOnLoad = true;
+
         public static T Instance
         {
             get
@@ -40,7 +43,10 @@ namespace MoreMountains.Tools
             if (_instance == null)
             {
                 _instance = this as T;
-                DontDestroyOnLoad(transform.gameObject);
+                if (dontDestroyOnLoad)
+                {
+                    DontDestroyOnLoad(transform.gameObject);
+                }
             }
             else
             {
