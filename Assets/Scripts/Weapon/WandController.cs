@@ -8,11 +8,11 @@ namespace TS.Weapon {
         public WeaponData currentWeaponData;
 
         #region Runtime Data
-        public float Damage {get, private set;};
-        public int BulletCount {get, private set;};
-        public int FireRate {get, private set;};
-        public int MaxAmmo {get, private set;};
-        public int CurrentAmmo {get; private set;};
+        public float Damage {get; private set;}
+        public int BulletCount {get; private set;}
+        public int FireRate {get; private set;}
+        public int MaxAmmo {get; private set;}
+        public int CurrentAmmo {get; private set;}
 
         #endregion
 
@@ -45,7 +45,7 @@ namespace TS.Weapon {
             if (currentWeaponData.bulletCount == 1) {
                 var projectile = Instantiate(currentWeaponData.bulletPrefab, firePoint.position, firePoint.rotation);
                 var rb = projectile.GetComponent<Rigidbody2D>();
-                rb.AddRelativeForce(new Vector2(0, speed * rb.mass), ForceMode);
+                rb.AddRelativeForce(new Vector2(0, speed * rb.mass), ForceMode2D.Impulse);
             }else{
                 float spreadAngle = 45f; // 扩散角度
                 float angleStep = spreadAngle / (currentWeaponData.bulletCount - 1);
@@ -117,5 +117,33 @@ namespace TS.Weapon {
             
             CurrentAmmo = MaxAmmo;
         }
+
+        #region 武器属性修改接口
+
+        // 修改子弹数量
+        public void ModifyBulletCount(int count)
+        {
+            BulletCount += count;
+        }
+
+        //修改射速
+        public void ModifyFireRate(int rate)
+        {
+            FireRate += rate;
+        }
+
+        //修改最大弹药数量
+        public void ModifyMaxAmmo(int ammo)
+        {
+            MaxAmmo += ammo;
+        }
+
+        //修改伤害
+        public void ModifyDamage(float damage)
+        {
+            Damage += damage;
+        }
+
+        #endregion
     }
 }
