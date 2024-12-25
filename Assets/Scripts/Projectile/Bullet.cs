@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace TS.Projectile {
 
+    public enum BulletType {
+        Magic,
+        Bomb,
+        Lazer,
+    }
+
     public class Bullet : MonoBehaviour {
         public float lifetime = 1;
         [Tooltip("击中石头时施加的扭矩")]
@@ -25,6 +31,16 @@ namespace TS.Projectile {
         private Vector2 scrollDirection = new(1, 0.2f);
 
         private float _destroyTime;
+
+        private float damage;
+
+        private BulletType type;
+
+        // 初始化子弹
+        public void Init(float bulletDamage = 1, BulletType bulletType = BulletType.Magic) {
+            damage = bulletDamage;
+            type = bulletType;
+        }
 
         private void Start() {
             _destroyTime = Time.time + lifetime;

@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class RockControl : MonoBehaviour {
 
-    [Tooltip("³õÊ¼ÏÂ½µËÙ¶È")]
+    [Tooltip("ï¿½ï¿½Ê¼ï¿½Â½ï¿½ï¿½Ù¶ï¿½")]
     [SerializeField]
     private float force = 10;
 
     private Rigidbody2D rb;
 
+    private float movePower = 0; 
+
     // Start is called before the first frame update
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(1, 1) * force;
+    }
+
+    //çŸ³å¤´è¢«æ‰“
+    public void Hit(){
+        
     }
 }
