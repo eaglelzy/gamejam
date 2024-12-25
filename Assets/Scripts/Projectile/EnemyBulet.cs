@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TS.Character;
 using TS.Player;
 using UnityEngine;
 
@@ -23,6 +24,9 @@ public class EnemyBulletData : MonoBehaviour
             //Destroy(effect, 0.5f);
             var mat = other.GetComponent<SpriteRenderer>().material;
             other.GetComponent<PlayerControl>().StartBlink(mat);
+            Health health = other.GetComponent<Health>();
+            health.Damage(weaponData.damage, gameObject);
+            Debug.Log("玩家遭受" + gameObject.name + "攻击，受到 " + weaponData.damage  + " 点伤害");
             Destroy(gameObject);
         } else
         {

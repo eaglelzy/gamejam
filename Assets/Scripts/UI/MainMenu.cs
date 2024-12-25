@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        GameManager.Instance.LoadScene("RockScene");
+        GameManager.Instance.ChangeGameState(GameState.Start);
     } 
 
     public void QuitGame()

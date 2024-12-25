@@ -1,5 +1,7 @@
 using MoreMountains.Tools;
 using System.Collections;
+using TS.Character;
+using TS.Player;
 using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
@@ -25,6 +27,10 @@ public class MeleeEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Enem
     [Tooltip("π•ª˜¿‰»¥(√Î)")]
     [SerializeField]
     private float coldDown = 1;
+
+    [Tooltip("π•ª˜¡¶")]
+    [SerializeField]
+    private float damage = 20;
 
     private float speed = 2;
     private float coldDownTime;
@@ -128,9 +134,17 @@ public class MeleeEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Enem
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) {
-            //TODO:
-            Debug.Log("player is hit!");
+        var other = collision.gameObject;
+        if (other.CompareTag("Player")) {
+            if (coldDownTime > 0)
+            {
+                return;
+            }
+            var mat = other.GetComponent<SpriteRenderer>().material;
+            other.GetComponent<PlayerControl>().StartBlink(mat);
+            Health health = other.GetComponent<Health>();
+            health.Damage(damage, gameObject);
+            //Debug.Log("ÕÊº“‘‚ ‹" + gameObject.name + "π•ª˜£¨ ‹µΩ " + damage  + " µ„…À∫¶");
         }
     }
 

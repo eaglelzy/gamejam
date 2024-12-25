@@ -14,7 +14,6 @@ public class GameManager : MMSingleton<GameManager>, MMEventListener<MMStateChan
         private MMStateMachine<GameState> machine;
         public void LoadScene(string sceneName) {
             SceneManager.LoadScene(sceneName);
-            ChangeGameState(GameState.Start);
         }
 
         public void QuitGame() {
@@ -59,18 +58,16 @@ public class GameManager : MMSingleton<GameManager>, MMEventListener<MMStateChan
             switch (eventType.NewState)
             {
                 case GameState.Start:
+                    SceneManager.LoadScene("RockScene");
                     Pause(false);
                     break;
                 case GameState.Continue:
                     Pause(false);
-                    UIManager.Instance.ShowPause(false);
                     break;
                 case GameState.Pause:
                     Pause(true);
-                    UIManager.Instance.ShowPause(true);
                     break;
                 case GameState.GameOver:
-                    UIManager.Instance.ShowPause(true);
                     Pause(true);
                     break;
                 case GameState.Win:
