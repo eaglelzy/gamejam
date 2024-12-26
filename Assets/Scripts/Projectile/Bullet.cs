@@ -69,6 +69,7 @@ namespace TS.Projectile {
             {
                 other.SetActive(false);
                 var effect = Instantiate(explodeEffect, transform.position, Quaternion.identity);
+                EffectSoundManager.Instance.PlayEffectSound("Hit");
                 Destroy(effect, 0.5f);
                 Destroy(gameObject);
             }

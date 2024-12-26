@@ -47,9 +47,11 @@ namespace TS.Character
             CurrentHealth -= damage;
 
             HealthChangedAction?.Invoke();
+            EffectSoundManager.Instance.PlayEffectSound("Hurt");
 
             if (CurrentHealth < 0)
             {
+                EffectSoundManager.Instance.PlayEffectSound("Die");
                 OnDied?.Invoke();
             }
         }
