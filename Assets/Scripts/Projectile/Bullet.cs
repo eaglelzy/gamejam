@@ -69,6 +69,7 @@ namespace TS.Projectile {
                 collision.GetComponent<RockControl>().PowerUp(damage * 1.5f);
                 Destroy(gameObject);
 
+                EffectSoundManager.Instance.PlayEffectSound("HitRock");
                 ApplyHitEffect();
             }
             else if (other.CompareTag("Enemy"))

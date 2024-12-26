@@ -14,6 +14,17 @@ public class EnemyBulletData : MonoBehaviour
     [SerializeField]
     private GameObject explodeEffect;
 
+    private float timer;
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer > 3)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,9 +39,6 @@ public class EnemyBulletData : MonoBehaviour
             health.Damage(weaponData.damage, gameObject);
             //Debug.Log("玩家遭受" + gameObject.name + "攻击，受到 " + weaponData.damage  + " 点伤害");
             Destroy(gameObject);
-        } else
-        {
-            Destroy(gameObject, 2);
         }
     }
 
