@@ -17,7 +17,7 @@ public class RockControl : MonoBehaviour {
     // Start is called before the first frame update
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(1, 1) * force;
+        //rb.velocity = new Vector2(1, 1) * force;
     }
 
     //石头被打
