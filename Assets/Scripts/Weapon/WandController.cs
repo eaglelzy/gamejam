@@ -23,7 +23,7 @@ namespace TS.Weapon {
 
         public GameObject projectilePrefab;
         public Transform firePoint;
-        public float speed = 20;
+        private float speed = 16;
         private float _nextFireTime;  //下一次可以开火的时间
 
         private void Awake() {
