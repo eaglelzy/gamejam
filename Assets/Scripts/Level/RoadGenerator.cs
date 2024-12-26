@@ -46,7 +46,7 @@ public class RoadGenerator : MonoBehaviour
     }
 
     void GenerateRoad() {
-        float roadWidth = currentRoad.GetComponent<SpriteRenderer>().bounds.size.x;
+        float roadWidth = currentRoad.GetComponent<SpriteRenderer>().sprite.bounds.size.x;
         float y = roadWidth * Mathf.Sin(currentAngle.z * Mathf.Deg2Rad);
         float x = roadWidth * Mathf.Cos(currentAngle.z * Mathf.Deg2Rad);
         Vector3 targetPosition = currentRoad.position + new Vector3(x, y, 0);
