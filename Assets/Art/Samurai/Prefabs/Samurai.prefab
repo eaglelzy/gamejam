@@ -138,7 +138,6 @@ MonoBehaviour:
   isReloading: 0
   projectilePrefab: {fileID: 4639309735049916335, guid: 28ed28a396198974aa63c823dfba422d, type: 3}
   firePoint: {fileID: 6464009038818516582}
-  speed: 10
 --- !u!1 &2901441740512525190
 GameObject:
   m_ObjectHideFlags: 0
