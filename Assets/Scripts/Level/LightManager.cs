@@ -38,6 +38,8 @@ public class LightManager : MMSingleton<LightManager>
 
     public bool isNight = false;
 
+    public int day = 0;
+
     [Tooltip("Ò¹ÍíÑÕÉ«")]
     [SerializeField]
     private Color nightColor = new(10f / 255, 13f / 255, 42f / 255);
@@ -79,6 +81,7 @@ public class LightManager : MMSingleton<LightManager>
                 yield return null;
             }
             isNight = !isNight;
+            day += 1;
         }
     }
 

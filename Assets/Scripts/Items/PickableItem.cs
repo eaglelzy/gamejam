@@ -107,7 +107,7 @@ namespace MoreMountains.TopDownEngine
 		/// </summary>
 		protected virtual void Effects()
 		{
-
+			
 		}
 
 		/// <summary>

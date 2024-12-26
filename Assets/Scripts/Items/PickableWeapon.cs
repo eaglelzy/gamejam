@@ -18,5 +18,6 @@ public class PickableWeapon : PickableItem
         //目前只考虑远程武器
         WandController weapon =  (WandController)_character.weaponController;
         weapon.SwitchWeapon(weaponData);
+        EffectSoundManager.Instance.PlayEffectSound("Pick");
     }
 }

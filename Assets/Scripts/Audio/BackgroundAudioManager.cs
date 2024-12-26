@@ -10,7 +10,13 @@ public class BackgroundAudioManager : MMSingleton<BackgroundAudioManager>, MMEve
     [SerializeField]
     private AudioClip backgroud;
 
+    [Tooltip("±≥æ∞“Ù¿÷")]
+    [SerializeField]
+    private AudioClip backgroud2;
+
     private AudioSource audioBackground;
+
+    private bool changedBackground = false;
 
     protected override void Awake()
     {
@@ -18,6 +24,21 @@ public class BackgroundAudioManager : MMSingleton<BackgroundAudioManager>, MMEve
         audioBackground = GetComponent<AudioSource>();
         audioBackground.clip = backgroud;
         PlayBackground();
+    }
+
+    private void Update()
+    {
+        if (LightManager.Instance.day == 5 && !changedBackground)
+        {
+            ChangedBackground();
+        }
+    }
+
+    public void ChangedBackground()
+    {
+        audioBackground.clip = backgroud2;
+        PlayBackground();
+        changedBackground = true;
     }
 
     public void PauseBackground()
