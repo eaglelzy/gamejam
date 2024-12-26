@@ -32,10 +32,7 @@ namespace TS.Weapon {
         //初始化
         public void Init()
         {
-            Damage = currentWeaponData.damage;
-            BulletCount = currentWeaponData.bulletCount;
-            FireRate = currentWeaponData.fireRate;
-            MaxAmmo = currentWeaponData.maxAmmo;
+            SwitchWeapon(currentWeaponData);
         }
 
         public override void Aim(Vector2 target) {
@@ -56,6 +53,9 @@ namespace TS.Weapon {
                 rb.AddRelativeForce(new Vector2(0, speed * rb.mass), ForceMode2D.Impulse);
                 // 初始化子弹脚本
                 bullet.Init(Damage);
+
+                CurrentAmmo--;
+                UIWeapon.Instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
             }else{
                 float spreadAngle = 45f; // 扩散角度
                 float angleStep = spreadAngle / (currentWeaponData.bulletCount - 1);
@@ -80,7 +80,14 @@ namespace TS.Weapon {
                     
                     // 如果子弹需要旋转，可以设置其角度
                     projectile.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+                    CurrentAmmo--;
+                    UIWeapon.Instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
                 }
+            }
+            if(CurrentAmmo <= 0)
+            {
+                TryReload();
             }
         }
 
@@ -116,6 +123,27 @@ namespace TS.Weapon {
             }
         }
 
+        public bool TryReload()
+        {
+            if (CurrentAmmo == MaxAmmo || isReloading) return false;
+            isReloading = true;
+            Reload();
+            return true;
+        }
+
+        public void Reload()
+        {
+            StartCoroutine(ReloadCoroutine());
+        }
+
+        private IEnumerator ReloadCoroutine()
+        {
+            yield return new WaitForSeconds(currentWeaponData.reloadTime);
+            CurrentAmmo = MaxAmmo;
+            UIWeapon.Instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
+            isReloading = false;
+        }
+
         /// <summary>
         /// 切换武器
         /// </summary>
@@ -129,6 +157,8 @@ namespace TS.Weapon {
             MaxAmmo = currentWeaponData.maxAmmo;
             
             CurrentAmmo = MaxAmmo;
+
+            UIWeapon.Instance.SetImage(currentWeaponData.weaponSprite);
         }
 
         // 丢弃武器在场景中

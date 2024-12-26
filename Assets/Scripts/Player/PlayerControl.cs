@@ -6,17 +6,20 @@ namespace TS.Player {
 
     public class PlayerControl : MonoBehaviour {
         public Animator animator;
-        public WeaponController weaponController;
+        public WandController weaponController;
 
         private void Start() {
             animator = GetComponent<Animator>();
-            weaponController = GetComponentInChildren<WeaponController>();
+            weaponController = GetComponentInChildren<WandController>();
         }
 
         private void Update() {
 
             if (Input.GetMouseButton(0)) {
                 weaponController.TryAttack();
+            }
+            if (Input.GetKeyDown(KeyCode.R)) {
+                weaponController.TryReload();
             }
             //var aimPoint = playerCamera.ScreenToWorldPoint(Input.mousePosition);
             var aimPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition); //可以直接用Camera.main获取主相机

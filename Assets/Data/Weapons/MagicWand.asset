@@ -18,8 +18,8 @@ MonoBehaviour:
   bulletSpeed: 10
   maxAmmo: 30
   isBurst: 1
-  reloadTime: 2
+  reloadTime: 1.5
   recoil: 0
   bulletCount: 1
-  fireRate: 10
+  fireRate: 8
   bulletPrefab: {fileID: 3482476119895229702, guid: cf7fb25b359d0ef449498e0708e8c546, type: 3}
