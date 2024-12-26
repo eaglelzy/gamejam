@@ -4190,8 +4190,10 @@ MonoBehaviour:
   - {fileID: 4852569291254064765, guid: 39a4039690b49f648895800abd259bd1, type: 3}
   - {fileID: 4852569291254064765, guid: 94137d48d341ac9418b5810c55f2d40c, type: 3}
   - {fileID: 4852569291254064765, guid: 597dc5e0703601640b8dbefaf70a0f71, type: 3}
-  itemPrefabList: []
-  platformPrefabList: []
+  itemPrefabList:
+  - {fileID: 3833571504633199174, guid: c8782584c1711d44f95bfc8348b33ada, type: 3}
+  platformPrefabList:
+  - {fileID: 3980978221196838092, guid: 5461f52c981113643b2a81c8ce653604, type: 3}
 --- !u!4 &1417460087
 Transform:
   m_ObjectHideFlags: 0

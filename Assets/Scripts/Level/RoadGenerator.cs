@@ -46,7 +46,7 @@ public class RoadGenerator : MonoBehaviour
     }
 
     void GenerateRoad() {
-        float roadWidth = currentRoad.GetComponent<SpriteRenderer>().sprite.bounds.size.x;
+        float roadWidth = currentRoad.GetComponent<SpriteRenderer>().sprite.bounds.size.x * 3;
         float y = roadWidth * Mathf.Sin(currentAngle.z * Mathf.Deg2Rad);
         float x = roadWidth * Mathf.Cos(currentAngle.z * Mathf.Deg2Rad);
         Vector3 targetPosition = currentRoad.position + new Vector3(x, y, 0);
@@ -67,6 +67,9 @@ public class RoadGenerator : MonoBehaviour
         currentAngle += new Vector3(0, 0, .1f);
 
         LevelManager.Instance.UpdateHeightText();
+
+        GeneratePlatform();
+        //GenerateItems();
     }
 
     private void Start() {
@@ -83,7 +86,17 @@ public class RoadGenerator : MonoBehaviour
     private void GenerateItems(){
         int index = Random.Range(0, itemPrefabList.Count);
         GameObject itemPrefab = itemPrefabList[index];
-        Vector3 position = currentRoad.position + new Vector3(0, 0, 0);
+        Vector3 position = currentRoad.position + new Vector3(3f, 4.1f, 0);
+        Instantiate(itemPrefab, position, Quaternion.identity);
+    }
+
+    private void GenerateItems(Vector3 position){
+        if(itemPrefabList.Count == 0) return;
+        //int index = Random.Range(0, itemPrefabList.Count);
+        int index = itemPrefabList.Count - 1;
+        GameObject itemPrefab = itemPrefabList[index];
+        itemPrefabList.RemoveAt(index);
+
         Instantiate(itemPrefab, position, Quaternion.identity);
     }
 
@@ -92,7 +105,11 @@ public class RoadGenerator : MonoBehaviour
         int index = Random.Range(0, platformPrefabList.Count);
         GameObject platformPrefab = platformPrefabList[index];
         //位置随机
-        Vector3 position = currentRoad.position + new Vector3(0, 0, 0);
+        float y = Random.Range(10, 20) / 10f + 3f;
+
+        Vector3 position = currentRoad.position + new Vector3(0, y, 0);
         Instantiate(platformPrefab, position, Quaternion.identity);
+
+        GenerateItems(position+new Vector3(0, 0.5f, 0));
     }
 }
