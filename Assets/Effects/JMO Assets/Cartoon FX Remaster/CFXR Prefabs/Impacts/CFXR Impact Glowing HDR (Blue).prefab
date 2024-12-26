@@ -1378,7 +1378,7 @@ ParticleSystem:
         ctime0: 3277
         ctime1: 13107
         ctime2: 26214
-        ctime3: 45875
+        ctime3: 55512
         ctime4: 45875
         ctime5: 65535
         ctime6: 65535
@@ -1392,7 +1392,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 4
         m_NumAlphaKeys: 2
       minGradient:
@@ -4851,7 +4851,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 30c41c686541ab64bb4c79d84567f3ed, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5063,7 +5062,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 0762aad6c86c7184482fd5c0cdea3b0e, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6315,8 +6313,8 @@ ParticleSystem:
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 3277
         ctime1: 13107
-        ctime2: 35939
-        ctime3: 45875
+        ctime2: 47417
+        ctime3: 65535
         ctime4: 45875
         ctime5: 65535
         ctime6: 65535
@@ -6330,7 +6328,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 4
         m_NumAlphaKeys: 2
       minGradient:
@@ -11298,16 +11296,16 @@ ParticleSystem:
         key0: {r: 1, g: 1, b: 1, a: 1}
         key1: {r: 0.3726415, g: 0.7790608, b: 1, a: 0}
         key2: {r: 0.23113209, g: 0.4368856, b: 1, a: 0.039215688}
-        key3: {r: 0.4648342, g: 0, b: 1, a: 0.039215688}
-        key4: {r: 1, g: 0.017601715, b: 0, a: 0.039215688}
+        key3: {r: 0.24361822, g: 0.46707752, b: 1, a: 0.039215688}
+        key4: {r: 0.4648342, g: 0, b: 1, a: 0.039215688}
         key5: {r: 1, g: 1, b: 1, a: 0.039215688}
         key6: {r: 1, g: 1, b: 1, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 3277
         ctime1: 13107
         ctime2: 26214
-        ctime3: 45875
-        ctime4: 45875
+        ctime3: 52428
+        ctime4: 65535
         ctime5: 65535
         ctime6: 65535
         ctime7: 0
@@ -11320,8 +11318,8 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
-        m_NumColorKeys: 4
+        m_ColorSpace: 0
+        m_NumColorKeys: 5
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
@@ -14779,7 +14777,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 8d244b42458199344aaea0c6c77cbb90, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19683,7 +19680,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a81df4963508f8c4e9c854c919c93b67, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
