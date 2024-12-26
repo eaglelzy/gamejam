@@ -1618,8 +1618,8 @@ MonoBehaviour:
   startTime: 2
   intervalTime: 3
   hardTime: 10
-  hardRate: 0.8
-  minIntervalTime: 0.25
+  hardRate: 0.9
+  minIntervalTime: 0.3
 --- !u!4 &437497075
 Transform:
   m_ObjectHideFlags: 0
