@@ -64,7 +64,7 @@ public class RoadGenerator : MonoBehaviour
         loadRoadMark = currentRoad.transform.Find("loadRoadMark");
 
         //增加角度
-        currentAngle += new Vector3(0, 0, .1f);
+        currentAngle += new Vector3(0, 0, .13f);
 
         LevelManager.Instance.UpdateHeightText();
 
@@ -91,11 +91,11 @@ public class RoadGenerator : MonoBehaviour
     }
 
     private void GenerateItems(Vector3 position){
-        if(itemPrefabList.Count == 0) return;
-        //int index = Random.Range(0, itemPrefabList.Count);
-        int index = itemPrefabList.Count - 1;
+        //if(itemPrefabList.Count == 0) return;
+        int index = Random.Range(0, itemPrefabList.Count);
+        //int index = itemPrefabList.Count - 1;
         GameObject itemPrefab = itemPrefabList[index];
-        itemPrefabList.RemoveAt(index);
+        //itemPrefabList.RemoveAt(index);
 
         Instantiate(itemPrefab, position, Quaternion.identity);
     }
@@ -105,7 +105,7 @@ public class RoadGenerator : MonoBehaviour
         int index = Random.Range(0, platformPrefabList.Count);
         GameObject platformPrefab = platformPrefabList[index];
         //位置随机
-        float y = Random.Range(10, 20) / 10f + 3f;
+        float y = Random.Range(10, 20) / 10f + 3.5f;
 
         Vector3 position = currentRoad.position + new Vector3(0, y, 0);
         Instantiate(platformPrefab, position, Quaternion.identity);

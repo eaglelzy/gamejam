@@ -2,40 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Tools;
-using System;
-using MoreMountains.Feedbacks;
-using UnityEditor.SceneTemplate;
 
 /// <summary>
-/// µÐÈË¹ÜÀí
+/// ï¿½ï¿½ï¿½Ë¹ï¿½ï¿½ï¿½
 /// </summary>
 public class EnemyManager : MMSingleton<EnemyManager>
 {
-    [Tooltip("µÐÈËÅäÖÃ")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
     private List<EnemyConfig> enemyConfigList = new();
 
-    [Tooltip("Íæ¼Ò")]
+    [Tooltip("ï¿½ï¿½ï¿½")]
     [SerializeField]
     public GameObject player;
 
-    [Tooltip("¿ªÊ¼Éú³ÉµÐÈËÊ±¼ä")]
+    [Tooltip("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½Ê±ï¿½ï¿½")]
     [SerializeField]
     private float startTime = 3f;
 
-    [Tooltip("Éú³ÉµÐÈË¼ä¸ô")]
+    [Tooltip("ï¿½ï¿½ï¿½Éµï¿½ï¿½Ë¼ï¿½ï¿½")]
     [SerializeField]
     private float intervalTime = 5f;
 
-    [Tooltip("Ã¿¸ô¶àÉÙÃëÔö¼ÓÓÎÏ·ÄÑ¶È")]
+    [Tooltip("Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½Ñ¶ï¿½")]
     [SerializeField]
     private int hardTime = 10;
 
-    [Tooltip("Ôö¼ÓÓÎÏ·ÄÑ¶Èrate")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½Ñ¶ï¿½rate")]
     [SerializeField]
     private float hardRate = 0.8f;
 
-    [Tooltip("×îÐ¡¼ä¸ôÊ±¼ä")]
+    [Tooltip("ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ê±ï¿½ï¿½")]
     [SerializeField]
     private float minIntervalTime = 0.6f;
 
@@ -66,7 +63,7 @@ public class EnemyManager : MMSingleton<EnemyManager>
     }
 
     /// <summary>
-    /// Éú³ÉµÐÈË
+    /// ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½
     /// </summary>
     private IEnumerator SpawnEnemy()
     {
@@ -74,12 +71,12 @@ public class EnemyManager : MMSingleton<EnemyManager>
         while (true)
         {
             yield return new WaitForSeconds(intervalTime);
-            // »ñÈ¡ÆÁÄ»±ßÔµµÄÊÀ½ç×ø±ê
+            // ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Camera camera = Camera.main;
             Vector3 topLeft = camera.ScreenToWorldPoint(new Vector3(0, Screen.height, camera.nearClipPlane));
             Vector3 topRight = camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, camera.nearClipPlane));
             EnemyConfig config = RandomEnemy();
-            // bad code.Ð´ËÀµÄ´úÂë, Èç¹ûÊÇ°×Ìì£¬ÔòòùòðÉÙÒ»Ð©
+            // bad code.Ð´ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ì£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ð©
             if (!LightManager.Instance.isNight)
             {
                 if (config.enemyPrefab.name == "Enemy1")

@@ -1,15 +1,12 @@
-using MoreMountains.Tools;
-using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 
 /// <summary>
-/// µÐÈË»ùÀàai
+/// ï¿½ï¿½ï¿½Ë»ï¿½ï¿½ï¿½ai
 /// </summary>
 public abstract class BaseEnemyAI : MonoBehaviour
 {
-    [Tooltip("³õÊ¼³¯ÏòÊÇ·ñ³¯ÓÒ")]
+    [Tooltip("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½")]
     [SerializeField]
     protected bool IsRight = true;
 

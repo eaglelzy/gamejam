@@ -69,25 +69,25 @@ public class PlayerMove : MonoBehaviour
         if(_moveInput.x!=0)
             CheckDirectionToFace(_moveInput.x > 0);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
         {
             OnJumpInput();
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.W))
         {
             OnJumpUpInput();
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            OnDashInput();
-        }
+        // if (Input.GetKeyDown(KeyCode.LeftShift))
+        // {
+        //     OnDashInput();
+        // }
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            OnFlyInput();
-        }
+        // if (Input.GetKeyDown(KeyCode.F))
+        // {
+        //     OnFlyInput();
+        // }
         #endregion
        
         #region Collision Check

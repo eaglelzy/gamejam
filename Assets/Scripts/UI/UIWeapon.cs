@@ -26,4 +26,19 @@ public class UIWeapon : MonoBehaviour
     {
         ammoImage.fillAmount = (float)ammo / maxAmmo;
     }
+
+    public void ReloadAnim(float time){
+        StartCoroutine(ReloadCoroutine(time));
+    }
+
+    private IEnumerator ReloadCoroutine(float time)
+    {
+        float start = 0;
+        while (start < time)
+        {
+            yield return new WaitForSeconds(0.01f);
+            start += 0.01f;
+            ammoImage.fillAmount = start / time;
+        }
+    }
 }

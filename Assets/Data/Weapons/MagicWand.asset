@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: Magic Wand
   weaponSprite: {fileID: 21300000, guid: c8b159b7f127307459f3053a84f90d0a, type: 3}
   damage: 1
-  bulletSpeed: 10
+  bulletSpeed: 16
   maxAmmo: 30
   isBurst: 1
   reloadTime: 1.5

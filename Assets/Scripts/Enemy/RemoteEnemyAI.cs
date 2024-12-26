@@ -1,33 +1,29 @@
 using MoreMountains.Tools;
-using System;
-using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 
 /// <summary>
-/// Ô¶³ÌµÐÈËai
+/// Ô¶ï¿½Ìµï¿½ï¿½ï¿½ai
 /// </summary>
 public class RemoteEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<EnemyStates.RemoteEnemyState>>
 {
-    [Tooltip("ÒÆ¶¯ËÙ¶È")]
+    [Tooltip("ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½")]
     [SerializeField]
     private float moveSpeed = 2;
 
-    [Tooltip("¾¯½ä·¶Î§")]
+    [Tooltip("ï¿½ï¿½ï¿½ä·¶Î§")]
     [SerializeField]
     private float warnRange = 4;
 
-    [Tooltip("¹¥»÷ÀäÈ´Ê±¼ä£¨Ãë£©")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´Ê±ï¿½ä£¨ï¿½ë£©")]
     [SerializeField]
     private float coldDown = 2;
 
-    [Tooltip("ÎäÆ÷")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
     private WeaponData weaponData;
 
-    [Tooltip("ÎäÆ÷·¢Éäµã")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
     private Transform firePoint;
 

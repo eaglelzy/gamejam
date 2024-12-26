@@ -46,11 +46,11 @@ namespace TS.Weapon {
 
         public override void Attack() {
             //如果一次发射的子弹数量为1，则直接发射
-            if (currentWeaponData.bulletCount == 1) {
+            if (BulletCount == 1) {
                 var projectile = Instantiate(currentWeaponData.bulletPrefab, firePoint.position, firePoint.rotation);
                 var rb = projectile.GetComponent<Rigidbody2D>();
                 var bullet = projectile.GetComponent<Bullet>();
-                rb.AddRelativeForce(new Vector2(0, speed * rb.mass), ForceMode2D.Impulse);
+                rb.AddRelativeForce(new Vector2(0, currentWeaponData.bulletSpeed * rb.mass), ForceMode2D.Impulse);
                 // 初始化子弹脚本
                 bullet.Init(Damage);
 
@@ -58,10 +58,10 @@ namespace TS.Weapon {
                 UIWeapon.Instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
             }else{
                 float spreadAngle = 45f; // 扩散角度
-                float angleStep = spreadAngle / (currentWeaponData.bulletCount - 1);
+                float angleStep = spreadAngle / (BulletCount - 1);
                 float startAngle = -spreadAngle / 2f + 90f;
 
-                for (int i = 0; i < currentWeaponData.bulletCount; i++) {
+                for (int i = 0; i < BulletCount; i++) {
                     // 计算每发子弹的角度
                     float angle = startAngle + angleStep * i;
                     // 计算子弹的方向s
@@ -76,7 +76,7 @@ namespace TS.Weapon {
                     // 初始化子弹脚本
                     bullet.Init(Damage);
                     // rb.AddRelativeForce(new Vector2(0, speed * rb.mass), ForceMode2D.Impulse);
-                    rb.velocity = direction * speed;
+                    rb.velocity = direction * currentWeaponData.bulletSpeed;
                     
                     // 如果子弹需要旋转，可以设置其角度
                     projectile.transform.rotation = Quaternion.Euler(0, 0, angle);
@@ -134,6 +134,7 @@ namespace TS.Weapon {
         public void Reload()
         {
             StartCoroutine(ReloadCoroutine());
+            UIWeapon.Instance.ReloadAnim(currentWeaponData.reloadTime);
         }
 
         private IEnumerator ReloadCoroutine()
@@ -158,7 +159,7 @@ namespace TS.Weapon {
             
             CurrentAmmo = MaxAmmo;
 
-            UIWeapon.Instance.SetImage(currentWeaponData.weaponSprite);
+            //UIWeapon.Instance.SetImage(currentWeaponData.weaponSprite);
         }
 
         // 丢弃武器在场景中

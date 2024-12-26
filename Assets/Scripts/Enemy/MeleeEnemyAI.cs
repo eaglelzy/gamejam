@@ -2,33 +2,31 @@ using MoreMountains.Tools;
 using System.Collections;
 using TS.Character;
 using TS.Player;
-using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 
 /// <summary>
-/// ½üÕ½µÐÈËai
+/// ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½ai
 /// </summary>
 public class MeleeEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<EnemyStates.MeleeEnemyState>>
 {
-    [Tooltip("ÒÆ¶¯ËÙ¶È")]
+    [Tooltip("ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½")]
     [SerializeField]
     private float moveSpeed = 4;
 
-    [Tooltip("¾¯½ä·¶Î§")]
+    [Tooltip("ï¿½ï¿½ï¿½ä·¶Î§")]
     [SerializeField]
     private float warnRange = 4;
 
-    [Tooltip("¹¥»÷ÒÆ¶¯ËÙ¶È")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½")]
     [SerializeField]
     private float attackSpeed = 5;
 
-    [Tooltip("¹¥»÷ÀäÈ´(Ãë)")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´(ï¿½ï¿½)")]
     [SerializeField]
     private float coldDown = 1;
 
-    [Tooltip("¹¥»÷Á¦")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
     private float damage = 20;
 
@@ -66,7 +64,7 @@ public class MeleeEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Enem
         var distance = (player.transform.position - transform.position).magnitude;
         if (distance < warnRange)
         {
-            // ´ïµ½¹¥»÷¾àÀë
+            // ï¿½ïµ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (distance < 0.1 && coldDownTime <= 0)
             {
                 if (machine.CurrentState != EnemyStates.MeleeEnemyState.Attack)
@@ -144,7 +142,7 @@ public class MeleeEnemyAI : BaseEnemyAI, MMEventListener<MMStateChangeEvent<Enem
             other.GetComponent<PlayerControl>().StartBlink(mat);
             Health health = other.GetComponent<Health>();
             health.Damage(damage, gameObject);
-            //Debug.Log("Íæ¼ÒÔâÊÜ" + gameObject.name + "¹¥»÷£¬ÊÜµ½ " + damage  + " µãÉËº¦");
+            //Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + gameObject.name + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Üµï¿½ " + damage  + " ï¿½ï¿½ï¿½Ëºï¿½");
         }
     }
 
