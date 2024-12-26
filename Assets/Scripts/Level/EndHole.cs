@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TS.Character;
 using UnityEngine;
 
 //终结之洞
@@ -7,7 +8,7 @@ public class EndHole : MonoBehaviour
 {
     Transform target;
 
-    public float normalSpeed = 1.5f;
+    private float normalSpeed = 1f;
 
     private float maxSpeed = 10f;
 
@@ -36,7 +37,8 @@ public class EndHole : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("You Lose");
+            Health health = other.GetComponent<Health>();
+            health.Damage(health.CurrentHealth, gameObject);
         }
     }
 

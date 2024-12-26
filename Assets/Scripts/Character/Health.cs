@@ -49,7 +49,7 @@ namespace TS.Character
             HealthChangedAction?.Invoke();
             EffectSoundManager.Instance.PlayEffectSound("Hurt");
 
-            if (CurrentHealth < 0)
+            if (CurrentHealth <= 0)
             {
                 EffectSoundManager.Instance.PlayEffectSound("Die");
                 OnDied?.Invoke();
