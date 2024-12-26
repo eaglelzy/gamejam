@@ -291,6 +291,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+        EffectSoundManager.Instance.PlayEffectSound("Jump");
     }
     #endregion
 
