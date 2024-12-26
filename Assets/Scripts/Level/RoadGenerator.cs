@@ -7,6 +7,12 @@ public class RoadGenerator : MonoBehaviour
     [SerializeField] [Tooltip("生成路预制体列表")]
     private List<GameObject> roadPrefabList;
 
+    [SerializeField]
+    private List<GameObject> itemPrefabList;
+
+    [SerializeField]
+    private List<GameObject> platformPrefabList;
+
     //需要生成路的标志，相机越过该标志，生成路
     Transform loadRoadMark;
 
@@ -25,6 +31,12 @@ public class RoadGenerator : MonoBehaviour
             return roadList.Count;
         }
     }
+
+    #region 参数
+    int roadCountPerStage = 4;
+
+
+    #endregion
     
     //初始化loadRoadMark
     void Init() {
@@ -41,7 +53,7 @@ public class RoadGenerator : MonoBehaviour
         Quaternion quaternion = Quaternion.Euler(currentAngle);
 
         //若干层后，换一种路
-        int index = RoadCount / 4;
+        int index = RoadCount / roadCountPerStage;
         if(index >= roadPrefabList.Count) index = roadPrefabList.Count - 1;
         GameObject roadPrefab = roadPrefabList[index];
 
@@ -67,7 +79,20 @@ public class RoadGenerator : MonoBehaviour
         }
     }
 
+    //每个阶段生成个道具, 在道具列表里随机选一个
     private void GenerateItems(){
+        int index = Random.Range(0, itemPrefabList.Count);
+        GameObject itemPrefab = itemPrefabList[index];
+        Vector3 position = currentRoad.position + new Vector3(0, 0, 0);
+        Instantiate(itemPrefab, position, Quaternion.identity);
+    }
 
+    //生成平台
+    private void GeneratePlatform(){
+        int index = Random.Range(0, platformPrefabList.Count);
+        GameObject platformPrefab = platformPrefabList[index];
+        //位置随机
+        Vector3 position = currentRoad.position + new Vector3(0, 0, 0);
+        Instantiate(platformPrefab, position, Quaternion.identity);
     }
 }

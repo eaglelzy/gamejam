@@ -118,6 +118,17 @@ namespace TS.Weapon {
             CurrentAmmo = MaxAmmo;
         }
 
+        // 丢弃武器在场景中
+        public void DropWepaon(WeaponData weaponData)
+        {
+            GameObject newGameObject = new GameObject(weaponData.weaponName);
+            // 添加SpriteRenderer组件并设置图片
+            SpriteRenderer spriteRenderer = newGameObject.AddComponent<SpriteRenderer>();
+            spriteRenderer.sprite = weaponData.weaponSprite;
+
+            //添加PickableItem
+        }
+
         #region 武器属性修改接口
 
         // 修改子弹数量

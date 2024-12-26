@@ -73,5 +73,15 @@ namespace TS.Projectile {
                 Destroy(gameObject);
             }
         }
+
+        //范围攻击
+        private void Hit(){
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+
+            foreach (var hitCollider in hitColliders)
+            {
+
+            }
+        }
     }
 }
