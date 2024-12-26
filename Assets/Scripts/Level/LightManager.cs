@@ -1,9 +1,10 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class LightManager : MonoBehaviour
+public class LightManager : MMSingleton<LightManager>
 {
     [Tooltip("全局光照")]
     [SerializeField]
@@ -35,7 +36,7 @@ public class LightManager : MonoBehaviour
     // Start is called before the first frame update
     private float gameTime;
 
-    private bool isNight = false;
+    public bool isNight = false;
 
     [Tooltip("夜晚颜色")]
     [SerializeField]
@@ -47,10 +48,6 @@ public class LightManager : MonoBehaviour
 
     private Color dayColor = Color.white;
     private Vector3 sunScale = new Vector3(0.8f, 0.8f, 0.8f);
-
-    private void Awake()
-    {
-    }
 
     void OnEnable()
     {

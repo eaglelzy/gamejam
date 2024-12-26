@@ -79,6 +79,17 @@ public class EnemyManager : MMSingleton<EnemyManager>
             Vector3 topLeft = camera.ScreenToWorldPoint(new Vector3(0, Screen.height, camera.nearClipPlane));
             Vector3 topRight = camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, camera.nearClipPlane));
             EnemyConfig config = RandomEnemy();
+            // bad code.写死的代码, 如果是白天，则蝙蝠少一些
+            if (!LightManager.Instance.isNight)
+            {
+                if (config.enemyPrefab.name == "Enemy1")
+                {
+                    if (UnityEngine.Random.Range(0, 1f) < 0.7f)
+                    {
+                        continue;
+                    }
+                }
+            }
             var enemy = ((MMMultipleObjectPooler)MMObjectPooler.Instance).GetPooledGameObjectOfType(config.enemyPrefab.name);
             if (enemy != null)
             {

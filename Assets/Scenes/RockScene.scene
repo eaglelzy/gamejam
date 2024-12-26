@@ -1453,7 +1453,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   enemyConfigList:
   - enemyPrefab: {fileID: 9025669663372374963, guid: aab775bf531b59f47ab35bfec3863f3a, type: 3}
-    rate: 10
+    rate: 15
   - enemyPrefab: {fileID: 4447780099166059689, guid: d5410be2924071e4bbc9d57bed6a13f2, type: 3}
     rate: 10
   player: {fileID: 1797344576}
@@ -1461,7 +1461,7 @@ MonoBehaviour:
   intervalTime: 3
   hardTime: 10
   hardRate: 0.8
-  minIntervalTime: 0.2
+  minIntervalTime: 0.25
 --- !u!4 &437497075
 Transform:
   m_ObjectHideFlags: 0
@@ -4183,6 +4183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e67499c47e5308409ead9167b4353a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 1
   globalLight: {fileID: 321646421}
   sun: {fileID: 919115193}
   sky: {fileID: 1846101598}
@@ -4190,6 +4191,7 @@ MonoBehaviour:
   enemyLight: {fileID: 0}
   changeTime: 5
   durationTime: 20
+  isNight: 0
   nightColor: {r: 0.066082254, g: 0.06875263, b: 0.084905684, a: 1}
   moonColor: {r: 0.7647059, g: 0.09019608, b: 0.8784314, a: 1}
 --- !u!1 &1627343584
