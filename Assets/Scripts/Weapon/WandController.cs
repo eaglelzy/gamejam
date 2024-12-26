@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using TS.Projectile;
 using UnityEngine;
 
 namespace TS.Weapon {
@@ -25,10 +26,16 @@ namespace TS.Weapon {
         public float speed = 16;
         private float _nextFireTime;  //下一次可以开火的时间
 
+        private void Awake() {
+            Init();
+        }
         //初始化
-        public void Init(WeaponData weaponData)
+        public void Init()
         {
-            SwitchWeapon(weaponData);
+            Damage = currentWeaponData.damage;
+            BulletCount = currentWeaponData.bulletCount;
+            FireRate = currentWeaponData.fireRate;
+            MaxAmmo = currentWeaponData.maxAmmo;
         }
 
         public override void Aim(Vector2 target) {
@@ -45,7 +52,10 @@ namespace TS.Weapon {
             if (currentWeaponData.bulletCount == 1) {
                 var projectile = Instantiate(currentWeaponData.bulletPrefab, firePoint.position, firePoint.rotation);
                 var rb = projectile.GetComponent<Rigidbody2D>();
+                var bullet = projectile.GetComponent<Bullet>();
                 rb.AddRelativeForce(new Vector2(0, speed * rb.mass), ForceMode2D.Impulse);
+                // 初始化子弹脚本
+                bullet.Init(Damage);
             }else{
                 float spreadAngle = 45f; // 扩散角度
                 float angleStep = spreadAngle / (currentWeaponData.bulletCount - 1);
@@ -62,6 +72,9 @@ namespace TS.Weapon {
 
                     var projectile = Instantiate(currentWeaponData.bulletPrefab, firePoint.position, Quaternion.identity);
                     var rb = projectile.GetComponent<Rigidbody2D>();
+                    var bullet = projectile.GetComponent<Bullet>();
+                    // 初始化子弹脚本
+                    bullet.Init(Damage);
                     // rb.AddRelativeForce(new Vector2(0, speed * rb.mass), ForceMode2D.Impulse);
                     rb.velocity = direction * speed;
                     

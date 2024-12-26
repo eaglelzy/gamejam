@@ -27,6 +27,10 @@ namespace TS.Projectile {
         [SerializeField]
         private GameObject explodeEffect;
 
+        [Tooltip("击中特效")]
+        [SerializeField]
+        private GameObject hitEffect;
+
         // 滚动方向
         private Vector2 scrollDirection = new(1, 0.2f);
 
@@ -62,17 +66,27 @@ namespace TS.Projectile {
                 // {
                 //     rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
                 // }
-                collision.GetComponent<RockControl>().PowerUp(1.5f);
+                collision.GetComponent<RockControl>().PowerUp(damage * 1.5f);
                 Destroy(gameObject);
+
+                ApplyHitEffect();
             }
             else if (other.CompareTag("Enemy"))
             {
                 other.SetActive(false);
                 var effect = Instantiate(explodeEffect, transform.position, Quaternion.identity);
+                ApplyHitEffect();
                 EffectSoundManager.Instance.PlayEffectSound("Hit");
                 Destroy(effect, 0.5f);
                 Destroy(gameObject);
             }
+        }
+
+        // 子弹击中特效
+        private void ApplyHitEffect() {
+            GameObject he = Instantiate(hitEffect, transform.position, Quaternion.identity);
+            // 伤害越大，特效越大
+            he.transform.localScale = Vector3.one * damage * 0.5f;
         }
 
         //范围攻击

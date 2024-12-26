@@ -170,6 +170,7 @@ MonoBehaviour:
   bulletForce: 500
   maxSpeed: 2
   explodeEffect: {fileID: 2032883686903336501, guid: 306f966727f4f2147a0e23ed9352d1ba, type: 3}
+  hitEffect: {fileID: 2708598583397607911, guid: 6398d43fe79ea0140913dc5530c646af, type: 3}
 --- !u!114 &-8238558353315996087
 MonoBehaviour:
   m_ObjectHideFlags: 0
