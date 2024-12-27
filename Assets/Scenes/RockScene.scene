@@ -1619,12 +1619,16 @@ MonoBehaviour:
     rate: 15
   - enemyPrefab: {fileID: 4447780099166059689, guid: d5410be2924071e4bbc9d57bed6a13f2, type: 3}
     rate: 10
+  - enemyPrefab: {fileID: 9025669663372374963, guid: 870f9a24bc647034ab419144e7d671a8, type: 3}
+    rate: 1.5
+  - enemyPrefab: {fileID: 4447780099166059689, guid: 4e63e9bb16fcc134ba1873f0238bbc32, type: 3}
+    rate: 1
   player: {fileID: 1797344576}
   startTime: 2
   intervalTime: 3
   hardTime: 10
   hardRate: 0.9
-  minIntervalTime: 0.3
+  minIntervalTime: 0.2
 --- !u!4 &437497075
 Transform:
   m_ObjectHideFlags: 0
