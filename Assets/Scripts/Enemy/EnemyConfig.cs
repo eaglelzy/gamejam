@@ -14,7 +14,11 @@ public class EnemyConfig
 
     [Tooltip("出现概率")]
     [SerializeField]
-    public float rate = 0.5f;
+    public float rate = 1f;
+
+    [Tooltip("出现倍率调整")]
+    [SerializeField]
+    public float rateRate = 1.1f;
 
     //[Tooltip("多长时间后会出现(单位：秒)")]
     //[SerializeField]

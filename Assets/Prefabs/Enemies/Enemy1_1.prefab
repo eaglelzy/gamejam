@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 5289832552688579195}
   m_Layer: 8
   m_HasEditorInfo: 1
-  m_Name: Enemy1
+  m_Name: Enemy1_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,8 +64,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -19.7, y: -4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5652435617577202335}
   m_Father: {fileID: 0}
@@ -114,7 +114,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1895378909, guid: 26cd173e39c4bb74e87939a6d1920fd5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9245283, g: 0.25729796, b: 0.75076985, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -199,11 +199,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsRight: 0
-  moveSpeed: 5
-  warnRange: 6
-  attackSpeed: 7
-  coldDown: 2
-  damage: 10
+  moveSpeed: 7
+  warnRange: 8
+  attackSpeed: 9
+  coldDown: 1.5
+  damage: 20
 --- !u!95 &5289832552688579195
 Animator:
   serializedVersion: 5

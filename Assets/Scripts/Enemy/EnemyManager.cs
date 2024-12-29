@@ -55,11 +55,25 @@ public class EnemyManager : MMSingleton<EnemyManager>
             {
                 intervalTime *= hardRate;
             }
+            ChangeSpawnRate();
             flag = true;
         } else if (v == 1)
         {
             flag = false;
         }
+    }
+
+    private void ChangeSpawnRate()
+    {
+        for (int i = enemyConfigList.Count - 1; i >= 0; i--)
+        {
+            enemyConfigList[i].rate = enemyConfigList[i].rate * enemyConfigList[i].rateRate;
+            if (enemyConfigList[i].rate < 0.5f)
+            {
+                enemyConfigList.RemoveAt(i);
+            }
+        }
+
     }
 
     /// <summary>
@@ -70,7 +84,7 @@ public class EnemyManager : MMSingleton<EnemyManager>
         yield return new WaitForSeconds(startTime);
         while (true)
         {
-            yield return new WaitForSeconds(intervalTime);
+            yield return new WaitForSeconds(intervalTime * Random.Range(0.5f, 2f));
             // ��ȡ��Ļ��Ե����������
             Camera camera = Camera.main;
             Vector3 topLeft = camera.ScreenToWorldPoint(new Vector3(0, Screen.height, camera.nearClipPlane));
@@ -111,13 +125,14 @@ public class EnemyManager : MMSingleton<EnemyManager>
         for (int i = 0; i < enemyConfigList.Count; i++)
         {
             rate += enemyConfigList[i].rate;
-            if (value > rate)
+            if (rate > value)
             {
-                index = i + 1; 
+                index = i; 
                 break;
             }
         }
-        if (index > enemyConfigList.Count)
+        Debug.Log("" + value + "-" + rate + "-" + index);
+        if (index >= enemyConfigList.Count)
         {
             index--;
         }
